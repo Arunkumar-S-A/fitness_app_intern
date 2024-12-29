@@ -1,20 +1,48 @@
+import 'ActivityLevelScreen.dart';
 import 'package:flutter/material.dart';
-import 'HeightPage.dart';
 import 'UserData.dart'; // Import the UserData singleton
 
-class WeightPage extends StatelessWidget {
-  const WeightPage({super.key});
+class TargetWeightPage extends StatelessWidget {
+  const TargetWeightPage({super.key});
+
+  void _calculateRecommendedWeight(BuildContext context) {
+    int currentWeight = UserData().currentWeight;
+    double currentHeight = UserData().currentHeight;
+
+    // Calculate BMI
+    double heightInMeters = currentHeight / 100;
+    double bmi = currentWeight / (heightInMeters * heightInMeters);
+
+    // Recommend a target weight based on a healthy BMI range (18.5 - 24.9)
+    double recommendedWeight = 22 * (heightInMeters * heightInMeters);
+
+    // Show a dialog with the recommended weight
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Recommended Weight'),
+        content: Text(
+            'Based on your height, a healthy weight is around ${recommendedWeight.round()} kg.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
 
   void _onNext(BuildContext context) {
-    // Navigate to HeightPage
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const HeightPage()),
-    );
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ActivityLevelScreen()));
   }
 
   @override
   Widget build(BuildContext context) {
+    int targetWeight = UserData().targetWeight;
+    double currentHeight = UserData().currentHeight;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -31,7 +59,7 @@ class WeightPage extends StatelessWidget {
               const SizedBox(height: 30),
               const Center(
                 child: Text(
-                  "What's your weight?",
+                  "Set your target weight",
                   style: TextStyle(
                     fontFamily: 'Oswald',
                     fontSize: 40,
@@ -43,19 +71,40 @@ class WeightPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              // Weight picker component
               Center(
                 child: WeightPicker(
-                  initialWeight: UserData().currentWeight,
+                  initialWeight: targetWeight,
                   onWeightChanged: (weight) {
-                    UserData().currentWeight =
-                        weight; // Store weight in UserData
+                    UserData().targetWeight = weight; // Update target weight
                   },
                 ),
               ),
               const SizedBox(height: 20),
+              Center(
+                child: GestureDetector(
+                  onTap: () => _calculateRecommendedWeight(context),
+                  child: Container(
+                    width: 176,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFD9D9D9),
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Recommend',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               const Spacer(),
-              // Next button and progress bar
               Center(
                 child: Column(
                   children: [
@@ -92,7 +141,7 @@ class WeightPage extends StatelessWidget {
                           height: 8,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: index == 2
+                            color: index == 5
                                 ? Colors.black
                                 : Colors.grey.withOpacity(0.3),
                           ),

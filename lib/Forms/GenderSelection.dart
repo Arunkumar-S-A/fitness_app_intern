@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'WeightPage.dart';
+import 'UserData.dart'; // Import the UserData singleton
 
 class GenderSelection extends StatefulWidget {
-  final Function(String)? onGenderSelected;
-
-  const GenderSelection({
-    super.key,
-    this.onGenderSelected,
-  });
+  const GenderSelection({super.key});
 
   @override
   _GenderSelectionState createState() => _GenderSelectionState();
@@ -17,10 +13,18 @@ class _GenderSelectionState extends State<GenderSelection> {
   String? selectedGender;
 
   void _navigateToWeightPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const WeightPage()),
-    );
+    if (selectedGender != null) {
+      UserData().gender = selectedGender!; // Store gender in UserData
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const WeightPage()),
+      );
+    } else {
+      // Optionally show a message to select a gender
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select a gender')),
+      );
+    }
   }
 
   @override
@@ -72,12 +76,10 @@ class _GenderSelectionState extends State<GenderSelection> {
                 'female',
               ),
               const Spacer(),
-              // Skip and Next Buttons
+              // Next Button
               Center(
                 child: Column(
                   children: [
-                    _buildButton('Skip', _navigateToWeightPage),
-                    const SizedBox(height: 15),
                     _buildButton('Next', _navigateToWeightPage),
                     const SizedBox(height: 20),
                     // Progress Bar
@@ -118,7 +120,6 @@ class _GenderSelectionState extends State<GenderSelection> {
         setState(() {
           selectedGender = genderValue;
         });
-        widget.onGenderSelected?.call(genderValue);
       },
       child: Container(
         height: 170,

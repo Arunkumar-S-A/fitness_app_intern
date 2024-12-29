@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'DiseaseSelectionScreen.dart';
+import 'UserData.dart'; // Import the UserData singleton
 
 class HeightPage extends StatelessWidget {
   const HeightPage({super.key});
@@ -44,9 +45,10 @@ class HeightPage extends StatelessWidget {
               const SizedBox(height: 40),
               Center(
                 child: HeightPicker(
-                  initialHeight: 172,
+                  initialHeight: UserData().currentHeight,
                   onHeightChanged: (height) {
-                    // Handle height change
+                    UserData().currentHeight =
+                        height; // Store height in UserData
                   },
                 ),
               ),
@@ -87,7 +89,7 @@ class HeightPage extends StatelessWidget {
                           height: 8,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: index == 1
+                            color: index == 3
                                 ? Colors.black
                                 : Colors.grey.withOpacity(0.3),
                           ),
@@ -123,8 +125,8 @@ class HeightPicker extends StatefulWidget {
 class _HeightPickerState extends State<HeightPicker> {
   late double _currentHeight;
   final ScrollController _scrollController = ScrollController();
-  static const double minHeight = 140.0;
-  static const double maxHeight = 220.0;
+  static const double minHeight = 120.0; // Minimum height
+  static const double maxHeight = 250.0; // Maximum height
 
   @override
   void initState() {

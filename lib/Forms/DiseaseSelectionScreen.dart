@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'TargetWeightPage.dart';
 
 class DiseaseSelectionScreen extends StatefulWidget {
   const DiseaseSelectionScreen({super.key});
@@ -33,6 +34,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
         showAllDiseases ? diseases : diseases.take(8).toList();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -67,7 +69,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
+                    mainAxisSpacing: 24,
                     childAspectRatio: 3,
                   ),
                   itemCount: displayedDiseases.length,
@@ -132,14 +134,14 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   height: 60,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: Colors.grey),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: const Offset(0, 1),
                       ),
                     ],
                   ),
@@ -147,8 +149,8 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   child: const Text(
                     'Selected',
                     style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 22,
+                      fontFamily: 'Poppins',
+                      fontSize: 16,
                       color: Colors.black,
                     ),
                   ),
@@ -158,7 +160,12 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    // Implement navigation to the next page or action
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TargetWeightPage(),
+                      ),
+                    );
                   },
                   child: Container(
                     width: 176,
@@ -193,7 +200,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                       height: 8,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: index == 3
+                        color: index == 4
                             ? Colors.black
                             : Colors.grey.withOpacity(0.3),
                       ),

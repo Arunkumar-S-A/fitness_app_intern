@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'GenderSelection.dart';
+import 'UserData.dart'; // Import UserData
 
 class AgeSelectorScreen extends StatefulWidget {
-  final Function(int)? onAgeSelected;
-
-  const AgeSelectorScreen({
-    super.key,
-    this.onAgeSelected,
-  });
+  const AgeSelectorScreen({super.key});
 
   @override
   _AgeSelectorScreenState createState() => _AgeSelectorScreenState();
@@ -17,8 +13,11 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
   final FixedExtentScrollController _scrollController =
       FixedExtentScrollController(initialItem: 7);
   final List<int> ages = List.generate(67, (index) => index + 14);
+  int selectedAge = 21; // Default age
 
   void _navigateToGenderSelection() {
+    // Store the selected age in UserData before navigating
+    UserData().age = selectedAge;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const GenderSelection()),
@@ -99,9 +98,9 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                     diameterRatio: 2.5,
                     physics: const FixedExtentScrollPhysics(),
                     onSelectedItemChanged: (index) {
-                      if (widget.onAgeSelected != null) {
-                        widget.onAgeSelected!(ages[index]);
-                      }
+                      setState(() {
+                        selectedAge = ages[index];
+                      });
                     },
                     childDelegate: ListWheelChildBuilderDelegate(
                       builder: (context, index) {
