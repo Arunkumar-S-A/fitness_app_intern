@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Forms/AgeSelectorScreen.dart';
+import 'forms/AgeSelectorScreen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

@@ -6,10 +6,11 @@ class FlashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
-        width: 412,
-        height: 917,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(35),
@@ -18,20 +19,20 @@ class FlashScreen extends StatelessWidget {
           children: [
             // Logo
             Positioned(
-              top: 98,
-              left: 129,
+              top: height * 0.1,
+              left: width * 0.3,
               child: Image.asset(
                 'assets/images/logo.png',
-                width: 153.69,
-                height: 150,
+                width: width * 0.4,
+                height: height * 0.2,
               ),
             ),
 
             // Text Content
-            const Positioned(
-              top: 306,
+            Positioned(
+              top: height * 0.35,
               left: 30,
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -62,8 +63,8 @@ class FlashScreen extends StatelessWidget {
 
             // Sportive Woman Image
             Positioned(
-              top: 85,
-              left: 163,
+              top: height * 0.1,
+              left: width * 0.4,
               child: Image.asset(
                 'assets/images/sportive_woman.png',
                 width: 249,
@@ -74,8 +75,8 @@ class FlashScreen extends StatelessWidget {
 
             // Get Started Button
             Positioned(
-              top: 695,
-              left: 115,
+              top: height * 0.75,
+              left: width * 0.3,
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -85,7 +86,7 @@ class FlashScreen extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  width: 193,
+                  width: width * 0.5,
                   height: 56,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),

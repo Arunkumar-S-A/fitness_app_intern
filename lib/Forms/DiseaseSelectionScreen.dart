@@ -30,6 +30,8 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     final displayedDiseases =
         showAllDiseases ? diseases : diseases.take(8).toList();
 
@@ -37,11 +39,11 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Row(
                 children: [
                   IconButton(
@@ -50,7 +52,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               const Center(
                 child: Text(
                   'Select the diseases that you have',
@@ -63,11 +65,11 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Expanded(
                 child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: width < 600 ? 2 : 3,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 24,
                     childAspectRatio: 3,
@@ -127,11 +129,11 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
+              SizedBox(height: height * 0.01),
               Center(
                 child: Container(
-                  width: 136,
-                  height: 60,
+                  width: width * 0.35,
+                  height: height * 0.08,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
@@ -156,7 +158,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Center(
                 child: GestureDetector(
                   onTap: () {
@@ -168,8 +170,8 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                     );
                   },
                   child: Container(
-                    width: 176,
-                    height: 56,
+                    width: width * 0.45,
+                    height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
                       border: Border.all(color: Colors.black),
@@ -188,7 +190,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -208,7 +210,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: height * 0.04),
             ],
           ),
         ),

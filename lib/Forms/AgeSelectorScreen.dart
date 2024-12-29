@@ -26,16 +26,21 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 28.0),
+        width: width,
+        height: height,
+        padding: EdgeInsets.symmetric(horizontal: width * 0.07),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(35),
         ),
         child: Column(
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: height * 0.05),
             Row(
               children: [
                 IconButton(
@@ -55,7 +60,7 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 const Spacer(flex: 2),
               ],
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: height * 0.02),
             const Text(
               'We use this information to create a workout and\nnutrition plan tailored just for you!',
               textAlign: TextAlign.center,
@@ -66,7 +71,7 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 height: 2,
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: height * 0.03),
             const Text(
               'How young are you?',
               style: TextStyle(
@@ -76,13 +81,13 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 letterSpacing: -0.4,
               ),
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: height * 0.05),
             Stack(
               alignment: Alignment.center,
               children: [
                 Container(
-                  height: 80,
-                  width: 100,
+                  height: height * 0.1,
+                  width: width * 0.25,
                   decoration: BoxDecoration(
                     color: const Color(0xFFD9D9D9),
                     border: Border.all(color: Colors.black),
@@ -90,10 +95,10 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 300,
+                  height: height * 0.4,
                   child: ListWheelScrollView.useDelegate(
                     controller: _scrollController,
-                    itemExtent: 80,
+                    itemExtent: height * 0.1,
                     perspective: 0.005,
                     diameterRatio: 2.5,
                     physics: const FixedExtentScrollPhysics(),
@@ -126,8 +131,8 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
             GestureDetector(
               onTap: _navigateToGenderSelection,
               child: Container(
-                width: 176,
-                height: 56,
+                width: width * 0.4,
+                height: height * 0.07,
                 decoration: BoxDecoration(
                   color: const Color(0xFFD9D9D9),
                   border: Border.all(color: Colors.black),
@@ -145,7 +150,7 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: height * 0.02),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -163,7 +168,7 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: height * 0.05),
           ],
         ),
       ),

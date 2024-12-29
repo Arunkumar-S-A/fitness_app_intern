@@ -6,7 +6,6 @@ class UserData {
   }
 
   UserData._internal();
-
   int currentWeight = 73; // Default weight
   double currentHeight = 172; // Default height
   int targetWeight = 73; // Default target weight

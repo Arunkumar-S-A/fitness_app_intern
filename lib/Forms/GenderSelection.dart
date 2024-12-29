@@ -29,9 +29,14 @@ class _GenderSelectionState extends State<GenderSelection> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        width: width,
+        height: height,
+        padding: EdgeInsets.symmetric(horizontal: width * 0.06),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(35),
@@ -40,13 +45,13 @@ class _GenderSelectionState extends State<GenderSelection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               // Back Arrow
               IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: height * 0.03),
               // Title
               const Center(
                 child: Text(
@@ -61,14 +66,14 @@ class _GenderSelectionState extends State<GenderSelection> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: height * 0.04),
               // Male Option
               _buildGenderOption(
                 'Male',
                 'assets/images/male.png', // Local image path
                 'male',
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               // Female Option
               _buildGenderOption(
                 'Female',
@@ -81,7 +86,7 @@ class _GenderSelectionState extends State<GenderSelection> {
                 child: Column(
                   children: [
                     _buildButton('Next', _navigateToWeightPage),
-                    const SizedBox(height: 20),
+                    SizedBox(height: height * 0.02),
                     // Progress Bar
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +105,7 @@ class _GenderSelectionState extends State<GenderSelection> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: height * 0.03),
                   ],
                 ),
               ),

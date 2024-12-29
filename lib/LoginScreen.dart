@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'SignupScreen.dart';
+import 'BottomNavigation.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,10 +18,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
-        width: 412,
-        height: 917,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(35),
@@ -28,11 +32,11 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 55),
+            padding: EdgeInsets.symmetric(horizontal: width * 0.1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 180),
+                SizedBox(height: height * 0.15),
                 const Text(
                   'Login',
                   style: TextStyle(
@@ -49,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 30),
                 _buildForgotPasswordAndSignup(),
                 const SizedBox(height: 17),
-                _buildSubmitButton(),
+                _buildSubmitButton(width),
                 const SizedBox(height: 66),
                 _buildOrConnectVia(),
                 const SizedBox(height: 26),
@@ -175,9 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      const SignupScreen()), // Navigate to SignupScreen
+              MaterialPageRoute(builder: (context) => const SignupScreen()),
             );
           },
           child: const Text(
@@ -204,9 +206,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSubmitButton() {
+  Widget _buildSubmitButton(double width) {
     return Container(
-      width: 176,
+      width: width * 0.4,
       height: 56,
       decoration: BoxDecoration(
         color: const Color(0xFFD9D9D9),
@@ -217,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
+            MaterialPageRoute(builder: (context) => BottomNavigation()),
           );
         },
         child: const Text(

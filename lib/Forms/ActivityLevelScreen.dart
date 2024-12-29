@@ -56,20 +56,23 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.06),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: height * 0.03),
               const Center(
                 child: Text(
                   'Activity Level',
@@ -82,7 +85,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: height * 0.03),
               Expanded(
                 child: ListView.builder(
                   itemCount: activityLevels.length,
@@ -102,7 +105,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
-                          height: 60,
+                          height: height * 0.08,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -130,8 +133,8 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                                   color: isSelected
                                       ? const Color(0xFFD9D9D9)
                                       : const Color(0xFFD9D9D9),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.04),
                                   child: Row(
                                     children: [
                                       const Icon(
@@ -158,15 +161,15 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                               Expanded(
                                 flex: 1,
                                 child: Container(
-                                  height: 60,
+                                  height: height * 0.08,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
                                         color: Colors.grey, width: 1),
                                   ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: width * 0.04),
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
@@ -188,7 +191,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                   },
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Center(
                 child: GestureDetector(
                   onTap: () {
@@ -199,8 +202,8 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                     );
                   },
                   child: Container(
-                    width: 176,
-                    height: 56,
+                    width: width * 0.45,
+                    height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
                       border: Border.all(color: Colors.black),
@@ -219,7 +222,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -239,7 +242,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: height * 0.04),
             ],
           ),
         ),

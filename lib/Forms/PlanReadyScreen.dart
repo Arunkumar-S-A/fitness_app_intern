@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'UserData.dart'; // Import the UserData singleton
+import '../BottomNavigation.dart';
 
 class PlanReadyScreen extends StatefulWidget {
   const PlanReadyScreen({Key? key}) : super(key: key);
@@ -256,20 +257,23 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.06),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
+              SizedBox(height: height * 0.02),
               GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: const Icon(Icons.arrow_back, size: 24),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: height * 0.1),
               Center(
                 child: Column(
                   children: [
@@ -278,11 +282,11 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                       style: TextStyle(
                         fontFamily: 'Oswald',
                         fontSize: 40,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.normal,
                         color: Color(0xFF08244B),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: height * 0.02),
                     GestureDetector(
                       onTap: _showMacroDetails,
                       child: Column(
@@ -295,14 +299,14 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                               color: Colors.black87,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: height * 0.01),
                           Text(
                             '${(tdee - calorieDeficit).toStringAsFixed(0)} kcal',
                             style: const TextStyle(
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Oswald',
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              color: Color(0xFF08244B),
                             ),
                           ),
                         ],
@@ -311,19 +315,19 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 48),
+              SizedBox(height: height * 0.05),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _buildWeightColumn('Now', currentWeight),
-                  const SizedBox(width: 64),
+                  SizedBox(width: width * 0.15),
                   _buildWeightColumn(
                     DateFormat('MMM dd').format(targetDate),
                     targetWeight,
                   ),
                 ],
               ),
-              const SizedBox(height: 48),
+              SizedBox(height: height * 0.05),
               Center(
                 child: Column(
                   children: [
@@ -331,7 +335,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                       'Lose ${weeklyLossGoal.toStringAsFixed(1)} kg/week',
                       () => _selectWeightLossGoal(context),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: height * 0.01),
                     _buildEditableRow(
                       'Target ${DateFormat('dd-MMM-yyyy').format(targetDate)}',
                       () => _selectDate(context),
@@ -344,10 +348,15 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                 child: GestureDetector(
                   onTap: () {
                     // Implement navigation to the next page or action
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BottomNavigation()),
+                    );
                   },
                   child: Container(
-                    width: 176,
-                    height: 56,
+                    width: width * 0.45,
+                    height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
                       border: Border.all(color: Colors.black),
@@ -366,7 +375,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
             ],
           ),
         ),
@@ -381,7 +390,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
           label,
           style: const TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 16,
+            fontSize: 20,
             color: Colors.black87,
           ),
         ),
@@ -394,15 +403,15 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
               weight.toStringAsFixed(0),
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+                fontSize: 30,
+                fontWeight: FontWeight.w400,
               ),
             ),
             const Text(
               'kg',
               style: TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 16,
+                fontSize: 14,
               ),
             ),
           ],
@@ -419,16 +428,16 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
           text,
           style: const TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 16,
+            fontSize: 20,
             color: Colors.blue,
           ),
         ),
-        const SizedBox(width: 4),
+        const SizedBox(width: 4, height: 40),
         GestureDetector(
           onTap: onTap,
           child: const Icon(
             Icons.edit,
-            size: 16,
+            size: 20,
             color: Colors.blue,
           ),
         ),

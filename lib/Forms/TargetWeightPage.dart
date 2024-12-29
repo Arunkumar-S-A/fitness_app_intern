@@ -40,23 +40,24 @@ class TargetWeightPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     int targetWeight = UserData().targetWeight;
-    double currentHeight = UserData().currentHeight;
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.06),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: height * 0.03),
               const Center(
                 child: Text(
                   "Set your target weight",
@@ -70,7 +71,7 @@ class TargetWeightPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: height * 0.04),
               Center(
                 child: WeightPicker(
                   initialWeight: targetWeight,
@@ -79,13 +80,13 @@ class TargetWeightPage extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               Center(
                 child: GestureDetector(
                   onTap: () => _calculateRecommendedWeight(context),
                   child: Container(
-                    width: 176,
-                    height: 56,
+                    width: width * 0.45,
+                    height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
                       border: Border.all(color: Colors.black),
@@ -111,8 +112,8 @@ class TargetWeightPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () => _onNext(context),
                       child: Container(
-                        width: 176,
-                        height: 56,
+                        width: width * 0.45,
+                        height: height * 0.07,
                         decoration: BoxDecoration(
                           color: const Color(0xFFD9D9D9),
                           border: Border.all(color: Colors.black),
@@ -130,7 +131,7 @@ class TargetWeightPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: height * 0.02),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -148,7 +149,7 @@ class TargetWeightPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: height * 0.03),
                   ],
                 ),
               ),
@@ -189,6 +190,8 @@ class _WeightPickerState extends State<WeightPicker> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Column(
       children: [
         Text(
@@ -200,12 +203,12 @@ class _WeightPickerState extends State<WeightPicker> {
             color: Color(0xFF111111),
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: height * 0.03),
         Stack(
           alignment: Alignment.center,
           children: [
             Container(
-              height: 80,
+              height: height * 0.1,
               width: 100,
               decoration: BoxDecoration(
                 color: const Color(0xFFD9D9D9),
@@ -214,7 +217,7 @@ class _WeightPickerState extends State<WeightPicker> {
               ),
             ),
             SizedBox(
-              height: 300,
+              height: height * 0.4,
               child: ListWheelScrollView.useDelegate(
                 controller: _scrollController,
                 itemExtent: 50,

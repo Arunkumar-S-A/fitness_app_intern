@@ -15,20 +15,23 @@ class HeightPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.06),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: height * 0.02),
               IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: height * 0.03),
               const Center(
                 child: Text(
                   "How tall are you?",
@@ -42,7 +45,7 @@ class HeightPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: height * 0.04),
               Center(
                 child: HeightPicker(
                   initialHeight: UserData().currentHeight,
@@ -59,8 +62,8 @@ class HeightPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () => _onNext(context),
                       child: Container(
-                        width: 176,
-                        height: 56,
+                        width: width * 0.4,
+                        height: height * 0.07,
                         decoration: BoxDecoration(
                           color: const Color(0xFFD9D9D9),
                           border: Border.all(color: Colors.black),
@@ -78,7 +81,7 @@ class HeightPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: height * 0.02),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -96,7 +99,7 @@ class HeightPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: height * 0.03),
                   ],
                 ),
               ),
@@ -126,7 +129,7 @@ class _HeightPickerState extends State<HeightPicker> {
   late double _currentHeight;
   final ScrollController _scrollController = ScrollController();
   static const double minHeight = 120.0; // Minimum height
-  static const double maxHeight = 250.0; // Maximum height
+  static const double maxHeight = 350.0; // Maximum height
 
   @override
   void initState() {
@@ -150,8 +153,10 @@ class _HeightPickerState extends State<HeightPicker> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return SizedBox(
-      width: 408,
+      width: width * 0.9,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -189,7 +194,7 @@ class _HeightPickerState extends State<HeightPicker> {
           const SizedBox(height: 24),
           SizedBox(
             height: 116,
-            width: 408,
+            width: width * 0.9,
             child: NotificationListener<ScrollNotification>(
               onNotification: (scrollNotification) {
                 if (scrollNotification is ScrollUpdateNotification) {
@@ -244,7 +249,7 @@ class _HeightPickerState extends State<HeightPicker> {
                     bottom: 0,
                     left: 32,
                     child: SizedBox(
-                      width: 343,
+                      width: width * 0.8,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
