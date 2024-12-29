@@ -1,10 +1,16 @@
+/* lib/Forms/WeightPage.dart */
 import 'package:flutter/material.dart';
+import 'HeightPage.dart';
 
 class WeightPage extends StatelessWidget {
   const WeightPage({super.key});
 
   void _onNext(BuildContext context) {
-    // Implement navigation to the next page or action
+    // Navigate to DiseaseSelectionScreen
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const HeightPage()),
+    );
   }
 
   @override
@@ -39,17 +45,13 @@ class WeightPage extends StatelessWidget {
               // Weight picker component
               Center(
                 child: WeightPicker(
-                  initialWeight: 60,
+                  initialWeight: 73, // Set initial weight to 73
                   onWeightChanged: (weight) {
                     // Handle weight change
                   },
                 ),
               ),
               const SizedBox(height: 20),
-              // Blue line and middle text
-              Center(
-                child: BlueLineWithText(),
-              ),
               const Spacer(),
               // Next button and progress bar
               Center(
@@ -123,11 +125,15 @@ class WeightPicker extends StatefulWidget {
 
 class _WeightPickerState extends State<WeightPicker> {
   late int _currentWeight;
+  late FixedExtentScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
     _currentWeight = widget.initialWeight;
+    _scrollController = FixedExtentScrollController(
+      initialItem: _currentWeight - 20, // Adjust initial position
+    );
   }
 
   @override
@@ -144,64 +150,53 @@ class _WeightPickerState extends State<WeightPicker> {
           ),
         ),
         const SizedBox(height: 24),
-        SizedBox(
-          width: 408,
-          height: 116,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 181, // Range from 20 to 200
-            itemBuilder: (context, index) {
-              int weight = index + 20; // Start from 20
-              return GestureDetector(
-                onTap: () {
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              height: 80,
+              width: 100,
+              decoration: BoxDecoration(
+                color: const Color(0xFFD9D9D9),
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
+            SizedBox(
+              height: 300,
+              child: ListWheelScrollView.useDelegate(
+                controller: _scrollController,
+                itemExtent: 50,
+                perspective: 0.005,
+                diameterRatio: 2.5,
+                physics: const FixedExtentScrollPhysics(),
+                onSelectedItemChanged: (index) {
                   setState(() {
-                    _currentWeight = weight;
+                    _currentWeight = index + 20;
                   });
                   widget.onWeightChanged(_currentWeight);
                 },
-                child: Container(
-                  width: 50,
-                  alignment: Alignment.center,
-                  child: Text(
-                    '$weight',
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 20,
-                      color:
-                          _currentWeight == weight ? Colors.black : Colors.grey,
-                    ),
-                  ),
+                childDelegate: ListWheelChildBuilderDelegate(
+                  builder: (context, index) {
+                    final weight = index + 20;
+                    return Center(
+                      child: Text(
+                        weight.toString(),
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 20,
+                          color: _currentWeight == weight
+                              ? Colors.black
+                              : Colors.grey,
+                        ),
+                      ),
+                    );
+                  },
+                  childCount: 181, // Range from 20 to 200
                 ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class BlueLineWithText extends StatelessWidget {
-  const BlueLineWithText({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 200,
-          height: 4,
-          color: Colors.blue,
-        ),
-        const SizedBox(height: 10),
-        const Text(
-          'Middle',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 24,
-            fontWeight: FontWeight.w400,
-            color: Color(0xFF111111),
-          ),
+              ),
+            ),
+          ],
         ),
       ],
     );

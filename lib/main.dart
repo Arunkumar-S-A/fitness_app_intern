@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'FlashScreen.dart';
 
 void main() {
-  runApp(FitnessApp());
+  runApp(const FitnessApp());
 }
 
 class FitnessApp extends StatelessWidget {

@@ -56,13 +56,13 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 const Spacer(flex: 2),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 14),
             const Text(
               'We use this information to create a workout and\nnutrition plan tailored just for you!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 14,
+                fontSize: 12,
                 color: Color(0xFF787878),
                 height: 2,
               ),
