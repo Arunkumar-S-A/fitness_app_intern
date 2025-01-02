@@ -11,7 +11,7 @@ class NutritionSummary extends StatelessWidget {
   final int totalFat;
 
   const NutritionSummary({
-    Key? key,
+    super.key,
     this.consumedCalories = 1456,
     this.totalCalories = 2875,
     this.consumedProtein = 60,
@@ -20,7 +20,7 @@ class NutritionSummary extends StatelessWidget {
     this.totalCarbs = 485,
     this.consumedFat = 60,
     this.totalFat = 85,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class NutritionSummary extends StatelessWidget {
 
     return Container(
       width: width * 0.95,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -37,7 +37,7 @@ class NutritionSummary extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
             blurRadius: 10,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -63,7 +63,8 @@ class NutritionSummary extends StatelessWidget {
                       value: consumedCalories / totalCalories,
                       strokeWidth: 15, // Increased stroke width
                       backgroundColor: Colors.grey[300],
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                      valueColor:
+                          const AlwaysStoppedAnimation<Color>(Colors.green),
                     ),
                   ),
                   Text(
@@ -72,7 +73,7 @@ class NutritionSummary extends StatelessWidget {
                       fontFamily: 'Poppins',
                       fontSize: width * 0.05,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF111111),
+                      color: const Color(0xFF111111),
                     ),
                   ),
                 ],
@@ -86,7 +87,7 @@ class NutritionSummary extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -131,14 +132,14 @@ class NutritionSummary extends StatelessWidget {
     return Column(
       children: [
         Icon(icon, color: color, size: width * 0.08),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           '$calories kcal',
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: width * 0.04,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF111111),
+            color: const Color(0xFF111111),
           ),
         ),
         Text(
@@ -147,7 +148,7 @@ class NutritionSummary extends StatelessWidget {
             fontFamily: 'Poppins',
             fontSize: width * 0.03,
             fontWeight: FontWeight.w400,
-            color: Color(0xFF111111).withOpacity(0.6),
+            color: const Color(0xFF111111).withOpacity(0.6),
           ),
         ),
       ],
@@ -165,14 +166,14 @@ class NutritionSummary extends StatelessWidget {
     return Column(
       children: [
         Icon(icon, color: color, size: width * 0.08),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           name,
           style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: width * 0.04,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF111111),
+            color: const Color(0xFF111111),
           ),
         ),
         Text(
@@ -181,10 +182,10 @@ class NutritionSummary extends StatelessWidget {
             fontFamily: 'Poppins',
             fontSize: width * 0.03,
             fontWeight: FontWeight.w400,
-            color: Color(0xFF111111).withOpacity(0.6),
+            color: const Color(0xFF111111).withOpacity(0.6),
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         SizedBox(
           width: width * 0.2,
           height: 12,

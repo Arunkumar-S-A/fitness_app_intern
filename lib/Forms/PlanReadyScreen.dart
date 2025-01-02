@@ -4,7 +4,7 @@ import 'UserData.dart'; // Import the UserData singleton
 import '../BottomNavigation.dart';
 
 class PlanReadyScreen extends StatefulWidget {
-  const PlanReadyScreen({Key? key}) : super(key: key);
+  const PlanReadyScreen({super.key});
 
   @override
   State<PlanReadyScreen> createState() => _PlanReadyScreenState();

@@ -5,11 +5,11 @@ class DateSelector extends StatefulWidget {
   final Function(int)? onDateSelected;
   final int initialSelectedIndex;
 
-  DateSelector({
-    Key? key,
+  const DateSelector({
+    super.key,
     this.onDateSelected,
     this.initialSelectedIndex = 4,
-  }) : super(key: key);
+  });
 
   @override
   _DateSelectorState createState() => _DateSelectorState();
@@ -41,7 +41,7 @@ class _DateSelectorState extends State<DateSelector> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    return Container(
+    return SizedBox(
       height: width * 0.2,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -72,12 +72,12 @@ class DateButton extends StatelessWidget {
   final double width;
 
   const DateButton({
-    Key? key,
+    super.key,
     required this.date,
     this.isSelected = false,
     this.onTap,
     required this.width,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -102,17 +102,17 @@ class DateButton extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontSize: width * 0.035,
                 fontWeight: FontWeight.w400,
-                color: Color(0xFF111111),
+                color: const Color(0xFF111111),
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               date.month,
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: width * 0.025,
                 fontWeight: FontWeight.w400,
-                color: Color(0xFF787878),
+                color: const Color(0xFF787878),
               ),
             ),
           ],

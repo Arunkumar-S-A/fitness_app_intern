@@ -5,17 +5,18 @@ import 'nutrition/NutritionSummary.dart';
 import 'nutrition/MealList.dart';
 
 class NutritionPage extends StatelessWidget {
+  const NutritionPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              NutritionHeader(),
+              const NutritionHeader(),
               SizedBox(height: height * 0.02),
               DateSelector(
                 onDateSelected: (index) {
@@ -23,9 +24,9 @@ class NutritionPage extends StatelessWidget {
                 },
               ),
               SizedBox(height: height * 0.02),
-              NutritionSummary(),
+              const NutritionSummary(),
               SizedBox(height: height * 0.02),
-              MealList(),
+              const MealList(),
             ],
           ),
         ),

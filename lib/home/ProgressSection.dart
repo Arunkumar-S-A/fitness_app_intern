@@ -7,12 +7,12 @@ class ProgressSection extends StatelessWidget {
   final int totalGymSessions;
 
   const ProgressSection({
-    Key? key,
+    super.key,
     this.exercisesLeft = 8,
     this.caloriesBurned = 567,
     this.completedGymSessions = 14,
     this.totalGymSessions = 20,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

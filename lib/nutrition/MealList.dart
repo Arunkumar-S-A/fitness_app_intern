@@ -4,7 +4,7 @@ import 'CameraScreen.dart';
 import 'package:camera/camera.dart';
 
 class MealList extends StatefulWidget {
-  const MealList({Key? key}) : super(key: key);
+  const MealList({super.key});
 
   @override
   _MealListState createState() => _MealListState();
@@ -65,15 +65,15 @@ class _MealListState extends State<MealList> {
             children: [
               Text(
                 'Add Food to $meal',
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Food Name',
                   border: OutlineInputBorder(),
                 ),
@@ -81,9 +81,9 @@ class _MealListState extends State<MealList> {
                   foodName = value;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Calories',
                   border: OutlineInputBorder(),
                 ),
@@ -92,7 +92,7 @@ class _MealListState extends State<MealList> {
                   calories = value;
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -104,16 +104,16 @@ class _MealListState extends State<MealList> {
                       });
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.edit),
-                    label: Text('Enter Manually'),
+                    icon: const Icon(Icons.edit),
+                    label: const Text('Enter Manually'),
                   ),
                   ElevatedButton.icon(
                     onPressed: () {
                       Navigator.pop(context);
                       _openCamera();
                     },
-                    icon: Icon(Icons.camera_alt),
-                    label: Text('Use Camera'),
+                    icon: const Icon(Icons.camera_alt),
+                    label: const Text('Use Camera'),
                   ),
                 ],
               ),
@@ -169,7 +169,7 @@ class _MealListState extends State<MealList> {
                           fontFamily: 'Poppins',
                           fontSize: width * 0.045,
                           fontWeight: FontWeight.w500,
-                          color: Color(0xFF111111),
+                          color: const Color(0xFF111111),
                         ),
                       ),
                       Text(
@@ -178,7 +178,7 @@ class _MealListState extends State<MealList> {
                           fontFamily: 'Poppins',
                           fontSize: width * 0.035,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xFF111111).withOpacity(0.6),
+                          color: const Color(0xFF111111).withOpacity(0.6),
                         ),
                       ),
                       if (hasActualCalories)

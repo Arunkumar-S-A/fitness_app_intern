@@ -3,14 +3,13 @@ import 'UserData.dart'; // Import the UserData singleton
 import 'PlanReadyScreen.dart';
 
 class ActivityLevelScreen extends StatefulWidget {
-  const ActivityLevelScreen({Key? key}) : super(key: key);
+  const ActivityLevelScreen({super.key});
 
   @override
   _ActivityLevelScreenState createState() => _ActivityLevelScreenState();
 }
 
-class _ActivityLevelScreenState extends State<ActivityLevelScreen>
-    with SingleTickerProviderStateMixin {
+class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
   final List<Map<String, String>> activityLevels = [
     {
       'title': 'Sedentary',
@@ -37,22 +36,6 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
   int selectedIndex = -1;
   int currentPage = 0;
   final int totalPages = 7;
-  late AnimationController _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +60,11 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                 child: Text(
                   'Activity Level',
                   style: TextStyle(
-                    fontFamily: 'Oswald',
-                    fontSize: 32,
-                    color: Color(0xFF08244B),
-                    height: 1.2,
-                  ),
+                      fontFamily: 'Oswald',
+                      fontSize: 40,
+                      color: Color(0xFF08244B),
+                      height: 1.2,
+                      fontWeight: FontWeight.w400),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -99,7 +82,6 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                             selectedIndex = index;
                             UserData().activityLevel =
                                 activityLevels[index]['title']!;
-                            _animationController.forward(from: 0.0);
                           });
                         },
                         child: AnimatedContainer(
@@ -110,17 +92,18 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
                                 color: isSelected ? Colors.black : Colors.grey,
-                                width: 1),
+                                width: 0.5),
                             color: isSelected
                                 ? const Color(0xFFD9D9D9)
-                                : Colors.white,
+                                : Colors.white, // Use D9D9D9 when selected
                             boxShadow: [
                               BoxShadow(
                                 color: isSelected
                                     ? Colors.black.withOpacity(0.3)
-                                    : const Color(0xFFD9D9D9),
-                                spreadRadius: 1,
-                                blurRadius: 4,
+                                    : Colors
+                                        .transparent, // Remove shadow for not selected
+                                spreadRadius: 0.5,
+                                blurRadius: 5,
                                 offset: const Offset(0, 2),
                               ),
                             ],
@@ -132,7 +115,8 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                                 child: Container(
                                   color: isSelected
                                       ? const Color(0xFFD9D9D9)
-                                      : const Color(0xFFD9D9D9),
+                                      : Colors
+                                          .white, // Use D9D9D9 when selected
                                   padding: EdgeInsets.symmetric(
                                       horizontal: width * 0.04),
                                   child: Row(
@@ -195,14 +179,23 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PlanReadyScreen()),
-                    );
+                    if (selectedIndex == -1) {
+                      // Show a message if no activity level is selected
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please select an activity level.'),
+                        ),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PlanReadyScreen()),
+                      );
+                    }
                   },
                   child: Container(
-                    width: width * 0.45,
+                    width: width * 0.4,
                     height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
@@ -242,7 +235,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen>
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.04),
+              SizedBox(height: height * 0.03),
             ],
           ),
         ),

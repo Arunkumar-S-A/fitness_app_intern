@@ -76,7 +76,8 @@ class FlashScreen extends StatelessWidget {
             // Get Started Button
             Positioned(
               top: height * 0.75,
-              left: width * 0.3,
+              left:
+                  (width - (width * 0.5)) / 2, // Center the button horizontally
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(

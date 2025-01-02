@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'HomeScreen.dart';
 import 'NutritionPage.dart';
+import 'WorkoutScreen.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -10,6 +11,7 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class SleepPage extends StatelessWidget {
+  const SleepPage({super.key});
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -21,19 +23,9 @@ class SleepPage extends StatelessWidget {
   }
 }
 
-class WorkoutPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Workout Page',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
-
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Center(
@@ -54,6 +46,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: PageView(
         controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
         onPageChanged: (index) {
           setState(() {
             _selectedIndex = index;
@@ -63,7 +56,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           HomeScreen(),
           SleepPage(),
           NutritionPage(),
-          WorkoutPage(),
+          WorkoutScreen(),
           ProfilePage(),
         ],
       ),
@@ -102,7 +95,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           border: isSelected
-              ? Border(
+              ? const Border(
                   top: BorderSide(
                     color: Colors.blue,
                     width: 3,

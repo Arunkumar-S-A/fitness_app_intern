@@ -38,6 +38,15 @@ flutter:
     - assets/images/cardio.png
     - assets/images/strength.png
     - assets/images/hiit.png
+    - assets/images/fullbodyw.png
+    - assets/images/backw.png
+    - assets/images/shoulderw.png
+    - assets/images/upperbodyw.png
+    - assets/images/shoulderw.png
+    - assets/images/lowerbodyw.png
+    - assets/images/corew.png
+    - assets/images/cardiow.png
+    - assets/images/armw.png
 
   fonts:
     - family: Oswald

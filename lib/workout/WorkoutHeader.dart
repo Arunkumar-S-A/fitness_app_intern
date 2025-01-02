@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class NutritionHeader extends StatelessWidget {
+class WorkoutHeader extends StatelessWidget {
   final String title;
 
-  const NutritionHeader({
+  const WorkoutHeader({
     super.key,
-    this.title = 'Nutrition',
+    this.title = 'Workouts',
   });
 
   @override

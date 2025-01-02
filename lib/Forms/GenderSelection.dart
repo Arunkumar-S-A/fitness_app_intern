@@ -81,13 +81,33 @@ class _GenderSelectionState extends State<GenderSelection> {
                 'female',
               ),
               const Spacer(),
-              // Next Button
+              // Next Button and Progress Bar
               Center(
                 child: Column(
                   children: [
-                    _buildButton('Next', _navigateToWeightPage),
+                    GestureDetector(
+                      onTap: _navigateToWeightPage,
+                      child: Container(
+                        width: width * 0.4,
+                        height: height * 0.07,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFD9D9D9),
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Next',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(height: height * 0.02),
-                    // Progress Bar
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -178,31 +198,6 @@ class _GenderSelectionState extends State<GenderSelection> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildButton(String label, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 176,
-        height: 56,
-        decoration: BoxDecoration(
-          color: const Color(0xFFD9D9D9),
-          border: Border.all(color: Colors.black),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Center(
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontFamily: 'Poppins',
-              fontSize: 16,
-              color: Colors.black,
-            ),
-          ),
         ),
       ),
     );

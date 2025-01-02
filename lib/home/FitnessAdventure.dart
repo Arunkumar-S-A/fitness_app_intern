@@ -9,13 +9,13 @@ class FitnessAdventure extends StatelessWidget {
   final int personalBestMinutes;
 
   const FitnessAdventure({
-    Key? key,
+    super.key,
     this.title = 'Your Fitness Adventure',
     this.workoutCompleteCount = 12,
     this.progressPercentage = 0.7,
     this.inProgressCount = 3,
     this.personalBestMinutes = 50,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

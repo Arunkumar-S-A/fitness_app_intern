@@ -16,5 +16,5 @@ class UserData {
   String workoutIntensity = 'moderate'; // Default workout intensity
   double calorieBudget = 2000; // Default calorie budget
   DateTime targetDate =
-      DateTime.now().add(Duration(days: 30)); // Default target date
+      DateTime.now().add(const Duration(days: 30)); // Default target date
 }

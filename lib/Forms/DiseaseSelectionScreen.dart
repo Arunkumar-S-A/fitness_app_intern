@@ -39,7 +39,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.06),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -91,9 +91,11 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: isSelected
-                              ? Colors.white
-                              : const Color(0xFFD9D9D9),
-                          borderRadius: BorderRadius.circular(10),
+                              ? const Color(
+                                  0xFFD9D9D9) // Previously Colors.white
+                              : Colors
+                                  .white, // Previously const Color(0xFFD9D9D9)
+                          borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: Colors.grey, width: 1),
                         ),
                         alignment: Alignment.center,
@@ -129,23 +131,15 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.01),
+              SizedBox(height: height * 0.02),
               Center(
                 child: Container(
-                  width: width * 0.35,
-                  height: height * 0.08,
+                  width: width * 0.4,
+                  height: height * 0.07,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: const Color(0xFFd9d9d9),
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: Colors.grey),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 1,
-                        offset: const Offset(0, 1),
-                      ),
-                    ],
                   ),
                   alignment: Alignment.center,
                   child: const Text(
@@ -170,7 +164,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                     );
                   },
                   child: Container(
-                    width: width * 0.45,
+                    width: width * 0.4,
                     height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
@@ -210,7 +204,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.04),
+              SizedBox(height: height * 0.03),
             ],
           ),
         ),

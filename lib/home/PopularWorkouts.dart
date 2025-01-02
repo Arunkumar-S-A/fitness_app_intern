@@ -5,7 +5,7 @@ class PopularWorkouts extends StatelessWidget {
   final String title;
 
   const PopularWorkouts({
-    Key? key,
+    super.key,
     this.workouts = const [
       WorkoutCard(
         image: 'assets/images/hiit.png',
@@ -29,7 +29,7 @@ class PopularWorkouts extends StatelessWidget {
       ),
     ],
     this.title = 'Most popular workouts',
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +76,11 @@ class WorkoutCard extends StatelessWidget {
   final double rating;
 
   const WorkoutCard({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.rating,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

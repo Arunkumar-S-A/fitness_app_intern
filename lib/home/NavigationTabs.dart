@@ -5,10 +5,10 @@ class NavigationTabs extends StatefulWidget {
   final int initialIndex;
 
   const NavigationTabs({
-    Key? key,
+    super.key,
     required this.onTabChanged,
     this.initialIndex = 0,
-  }) : super(key: key);
+  });
 
   @override
   _NavigationTabsState createState() => _NavigationTabsState();
@@ -101,9 +101,11 @@ class _NavigationTabsState extends State<NavigationTabs> {
 }
 
 class SleepPage extends StatelessWidget {
+  const SleepPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Sleep Page',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -113,9 +115,11 @@ class SleepPage extends StatelessWidget {
 }
 
 class NutritionPage extends StatelessWidget {
+  const NutritionPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Nutrition Page',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -125,9 +129,11 @@ class NutritionPage extends StatelessWidget {
 }
 
 class WorkoutPage extends StatelessWidget {
+  const WorkoutPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Workout Page',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -137,9 +143,11 @@ class WorkoutPage extends StatelessWidget {
 }
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(
         'Profile Page',
         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

@@ -35,7 +35,7 @@ class TargetWeightPage extends StatelessWidget {
 
   void _onNext(BuildContext context) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ActivityLevelScreen()));
+        MaterialPageRoute(builder: (context) => const ActivityLevelScreen()));
   }
 
   @override
@@ -85,11 +85,11 @@ class TargetWeightPage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => _calculateRecommendedWeight(context),
                   child: Container(
-                    width: width * 0.45,
+                    width: width * 0.4,
                     height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: const Center(
@@ -105,14 +105,14 @@ class TargetWeightPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(),
+              SizedBox(height: height * 0.02),
               Center(
                 child: Column(
                   children: [
                     GestureDetector(
                       onTap: () => _onNext(context),
                       child: Container(
-                        width: width * 0.45,
+                        width: width * 0.4,
                         height: height * 0.07,
                         decoration: BoxDecoration(
                           color: const Color(0xFFD9D9D9),
@@ -203,7 +203,7 @@ class _WeightPickerState extends State<WeightPicker> {
             color: Color(0xFF111111),
           ),
         ),
-        SizedBox(height: height * 0.03),
+        SizedBox(height: height * 0.02),
         Stack(
           alignment: Alignment.center,
           children: [

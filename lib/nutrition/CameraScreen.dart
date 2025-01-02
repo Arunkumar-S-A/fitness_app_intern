@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
 
-  const CameraScreen({Key? key, required this.camera}) : super(key: key);
+  const CameraScreen({super.key, required this.camera});
 
   @override
   _CameraScreenState createState() => _CameraScreenState();
@@ -59,7 +59,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   top: 40,
                   left: 20,
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.white),
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ),
@@ -67,7 +67,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   bottom: 40,
                   left: 20,
                   child: IconButton(
-                    icon: Icon(Icons.photo, color: Colors.white),
+                    icon: const Icon(Icons.photo, color: Colors.white),
                     onPressed: () {
                       // Handle recent photo button
                     },
@@ -77,14 +77,14 @@ class _CameraScreenState extends State<CameraScreen> {
                   bottom: 40,
                   right: 20,
                   child: IconButton(
-                    icon: Icon(Icons.camera, color: Colors.white),
+                    icon: const Icon(Icons.camera, color: Colors.white),
                     onPressed: _takePicture,
                   ),
                 ),
               ],
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
