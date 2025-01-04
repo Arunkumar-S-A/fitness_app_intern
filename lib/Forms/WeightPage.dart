@@ -36,8 +36,8 @@ class WeightPage extends StatelessWidget {
                 child: Text(
                   "What's your weight?",
                   style: TextStyle(
-                    fontFamily: 'Oswald',
-                    fontSize: 40,
+                    fontFamily: 'Inter',
+                    fontSize: 36,
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF08244B),
                     letterSpacing: -0.4,
@@ -191,7 +191,7 @@ class _WeightPickerState extends State<WeightPicker> {
                         weight.toString(),
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 20,
+                          fontSize: 26,
                           color: _currentWeight == weight
                               ? Colors.black
                               : Colors.grey,

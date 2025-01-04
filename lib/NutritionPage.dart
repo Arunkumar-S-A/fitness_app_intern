@@ -16,7 +16,11 @@ class NutritionPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const NutritionHeader(),
+              NutritionHeader(
+                title: 'Track Your Notification',
+                subtitle: 'Eat Healthy',
+                onNotificationTap: () {},
+              ),
               SizedBox(height: height * 0.02),
               DateSelector(
                 onDateSelected: (index) {

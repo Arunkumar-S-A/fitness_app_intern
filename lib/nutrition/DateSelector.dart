@@ -42,7 +42,7 @@ class _DateSelectorState extends State<DateSelector> {
     double width = MediaQuery.of(context).size.width;
 
     return SizedBox(
-      height: width * 0.2,
+      height: width * 0.16,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: dates.length,
@@ -89,7 +89,7 @@ class DateButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
           color: isSelected ? Colors.blue : Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(15),
           border: Border.all(
               color: isSelected ? Colors.blue : Colors.grey, width: 2),
         ),
@@ -102,18 +102,17 @@ class DateButton extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontSize: width * 0.035,
                 fontWeight: FontWeight.w400,
-                color: const Color(0xFF111111),
+                color: isSelected ? Colors.white : const Color(0xFF111111),
               ),
             ),
             const SizedBox(height: 4),
             Text(
               date.month,
               style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: width * 0.025,
-                fontWeight: FontWeight.w400,
-                color: const Color(0xFF787878),
-              ),
+                  fontFamily: 'Poppins',
+                  fontSize: width * 0.025,
+                  fontWeight: FontWeight.w400,
+                  color: isSelected ? Colors.white : const Color(0xFF111111)),
             ),
           ],
         ),

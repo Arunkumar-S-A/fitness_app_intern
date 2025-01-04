@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Text(
                   'Login',
                   style: TextStyle(
-                    fontFamily: 'Oswald',
+                    fontFamily: 'Inter',
                     fontSize: 36,
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF111111),
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const Text(
           'Email',
           style: TextStyle(
-            fontFamily: 'Oswald',
+            fontFamily: 'Inter',
             fontSize: 20,
             fontWeight: FontWeight.w700,
             color: Color(0xFF08244B),
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const Text(
           'Password',
           style: TextStyle(
-            fontFamily: 'Oswald',
+            fontFamily: 'Inter',
             fontSize: 20,
             fontWeight: FontWeight.w700,
             color: Color(0xFF08244B),

@@ -7,18 +7,18 @@ class WorkoutCard extends StatelessWidget {
   final int exercises;
 
   const WorkoutCard({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.calories,
     required this.exercises,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     double cardHeight = MediaQuery.of(context).size.height * 0.15;
     double imageWidth = cardHeight * (232 / 155); // Maintain aspect ratio
-
+    double height = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       width: double.infinity,
@@ -30,13 +30,6 @@ class WorkoutCard extends StatelessWidget {
           color: const Color(0xFFD9D9D9),
           width: 2.0,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFFD9D9D9).withOpacity(0.5),
-            blurRadius: 5,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Row(
         children: [
@@ -66,18 +59,18 @@ class WorkoutCard extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      fontFamily: 'Oswald',
-                      fontSize: 16,
+                      fontFamily: 'Inter',
+                      fontSize: 18,
                       color: Color(0xFF08244B),
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: height * 0.001),
                   Text(
                     calories,
                     style: const TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 10,
+                      fontSize: 11,
                       color: Color(0xFF111111),
                       fontWeight: FontWeight.w400,
                     ),
@@ -87,7 +80,7 @@ class WorkoutCard extends StatelessWidget {
                     'No. of Exercises: $exercises',
                     style: const TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 10,
+                      fontSize: 11,
                       color: Color(0xFF111111),
                       fontWeight: FontWeight.w400,
                     ),

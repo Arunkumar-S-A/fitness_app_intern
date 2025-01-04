@@ -2,33 +2,79 @@ import 'package:flutter/material.dart';
 
 class NutritionHeader extends StatelessWidget {
   final String title;
+  final String subtitle;
+  final VoidCallback onNotificationTap;
 
   const NutritionHeader({
     super.key,
-    this.title = 'Nutrition',
+    this.title = 'Track Your Nutrition',
+    this.subtitle = 'Eat Healthy',
+    required this.onNotificationTap,
   });
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     return Container(
+      padding: EdgeInsets.symmetric(
+          horizontal: width * 0.05, vertical: height * 0.03),
       width: double.infinity,
-      height: width * 0.25,
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: const Color(0xFFD9D9D9),
         borderRadius: BorderRadius.circular(0),
       ),
-      child: Center(
-        child: Text(
-          title,
-          style: TextStyle(
-            fontFamily: 'Oswald',
-            fontSize: width * 0.08,
-            fontWeight: FontWeight.w400,
-            color: const Color(0xFF111111),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: width * 0.06,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(height: height * 0.005),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: width * 0.045,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFF08244B),
+                ),
+              ),
+            ],
           ),
-        ),
+          GestureDetector(
+            onTap: onNotificationTap,
+            child: Container(
+              padding: EdgeInsets.all(width * 0.02),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.notifications,
+                size: width * 0.08,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

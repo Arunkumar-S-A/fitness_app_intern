@@ -30,6 +30,7 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.06),
@@ -47,8 +48,8 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                   "Let's Get to Know You",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: 'Oswald',
-                    fontSize: 30,
+                    fontFamily: 'Inter',
+                    fontSize: 26,
                     color: Color(0xFF111111),
                   ),
                 ),
@@ -71,8 +72,8 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 child: Text(
                   'How young are you?',
                   style: TextStyle(
-                    fontFamily: 'Oswald',
-                    fontSize: 40,
+                    fontFamily: 'Inter',
+                    fontSize: 36,
                     color: Color(0xFF08244B),
                     letterSpacing: -0.4,
                   ),

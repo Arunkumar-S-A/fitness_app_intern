@@ -55,20 +55,20 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.04),
               const Center(
                 child: Text(
                   'Activity Level',
                   style: TextStyle(
-                      fontFamily: 'Oswald',
-                      fontSize: 40,
+                      fontFamily: 'Inter',
+                      fontSize: 36,
                       color: Color(0xFF08244B),
                       height: 1.2,
                       fontWeight: FontWeight.w400),
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.04),
               Expanded(
                 child: ListView.builder(
                   itemCount: activityLevels.length,

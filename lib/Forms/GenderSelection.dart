@@ -51,14 +51,14 @@ class _GenderSelectionState extends State<GenderSelection> {
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              SizedBox(height: height * 0.03),
+              SizedBox(height: height * 0.08),
               // Title
               const Center(
                 child: Text(
                   "What's your gender?",
                   style: TextStyle(
-                    fontFamily: 'Oswald',
-                    fontSize: 40,
+                    fontFamily: 'Inter',
+                    fontSize: 36,
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF08244B),
                     letterSpacing: -0.4,
@@ -66,7 +66,7 @@ class _GenderSelectionState extends State<GenderSelection> {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.04),
+              SizedBox(height: height * 0.06),
               // Male Option
               _buildGenderOption(
                 'Male',

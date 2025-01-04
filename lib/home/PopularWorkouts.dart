@@ -42,8 +42,8 @@ class PopularWorkouts extends StatelessWidget {
             title,
             style: const TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w500,
-              fontFamily: 'Oswald',
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Inter',
               color: Colors.black,
             ),
           ),

@@ -57,7 +57,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                 child: Text(
                   'Select the diseases that you have',
                   style: TextStyle(
-                    fontFamily: 'Oswald',
+                    fontFamily: 'Inter',
                     fontSize: 32,
                     color: Color(0xFF08244B),
                     height: 1.2,
@@ -65,7 +65,7 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: height * 0.02),
+              SizedBox(height: height * 0.04),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -124,14 +124,14 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                     showAllDiseases ? 'Show Less' : 'See More',
                     style: const TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 12,
+                      fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Color(0xFF08244B),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.02),
+              SizedBox(height: height * 0.06),
               Center(
                 child: Container(
                   width: width * 0.4,

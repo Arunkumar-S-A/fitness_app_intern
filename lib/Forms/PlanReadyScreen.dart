@@ -280,7 +280,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                     const Text(
                       'Your Plan is Ready!',
                       style: TextStyle(
-                        fontFamily: 'Oswald',
+                        fontFamily: 'Inter',
                         fontSize: 40,
                         fontWeight: FontWeight.normal,
                         color: Color(0xFF08244B),
@@ -303,7 +303,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                           Text(
                             '${(tdee - calorieDeficit).toStringAsFixed(0)} kcal',
                             style: const TextStyle(
-                              fontFamily: 'Oswald',
+                              fontFamily: 'Inter',
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF08244B),
@@ -355,7 +355,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                     );
                   },
                   child: Container(
-                    width: width * 0.45,
+                    width: width * 0.4,
                     height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
@@ -375,7 +375,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.02),
+              SizedBox(height: height * 0.06),
             ],
           ),
         ),

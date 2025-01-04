@@ -38,9 +38,9 @@ class FlashScreen extends StatelessWidget {
                   Text(
                     'Ready\nSet, Push!',
                     style: TextStyle(
-                      fontFamily: 'Oswald',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 48,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 44,
                       color: Color(0xFF08244B),
                     ),
                   ),

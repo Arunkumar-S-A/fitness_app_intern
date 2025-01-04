@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
 import 'LoginScreen.dart';
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('My Profile')),
-      body: const Center(child: Text('Profile Screen')),
-    );
-  }
-}
+import 'ProfileScreen.dart';
+import 'SettingScreen.dart';
+import 'HelpScreen.dart';
+import 'ContactUsScreen.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -25,30 +17,6 @@ class PaymentScreen extends StatelessWidget {
   }
 }
 
-class ContactScreen extends StatelessWidget {
-  const ContactScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Contact Us')),
-      body: const Center(child: Text('Contact Screen')),
-    );
-  }
-}
-
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
-      body: const Center(child: Text('Settings Screen')),
-    );
-  }
-}
-
 class TermsScreen extends StatelessWidget {
   const TermsScreen({super.key});
 
@@ -57,18 +25,6 @@ class TermsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Terms and Conditions')),
       body: const Center(child: Text('Terms Screen')),
-    );
-  }
-}
-
-class HelpScreen extends StatelessWidget {
-  const HelpScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Help')),
-      body: const Center(child: Text('Help Screen')),
     );
   }
 }
@@ -87,7 +43,7 @@ class ChatScreen extends StatelessWidget {
 
 // Modified Dashboard with navigation
 class DashBoard extends StatelessWidget {
-  const DashBoard({Key? key}) : super(key: key);
+  const DashBoard({super.key});
 
   void _navigateToScreen(BuildContext context, Widget screen) {
     Navigator.push(
@@ -138,17 +94,17 @@ class DashBoard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   children: [
                     _buildMenuItem(context, Icons.person_outline, 'My Profile',
-                        const ProfileScreen()),
+                        const ProfileScreen(fromDashboard: true)),
                     _buildMenuItem(context, Icons.payment, 'Payment',
                         const PaymentScreen()),
                     _buildMenuItem(context, Icons.mail_outline, 'Contact Us',
-                        const ContactScreen()),
-                    _buildMenuItem(context, Icons.settings, 'Settings',
-                        const SettingsScreen()),
+                        ContactUsScreen()),
+                    _buildMenuItem(
+                        context, Icons.settings, 'Settings', SettingsScreen()),
                     _buildMenuItem(context, Icons.description_outlined,
                         'Terms and Conditions', const TermsScreen()),
-                    _buildMenuItem(context, Icons.help_outline, 'Help',
-                        const HelpScreen()),
+                    _buildMenuItem(
+                        context, Icons.help_outline, 'Help', HelpScreen()),
                     _buildMenuItem(context, Icons.chat_bubble_outline,
                         'Chat with our AI assistant', const ChatScreen()),
                     _buildMenuItem(context, Icons.logout_rounded, 'Logout',

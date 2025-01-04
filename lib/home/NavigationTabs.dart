@@ -83,7 +83,7 @@ class _NavigationTabsState extends State<NavigationTabs> {
           Text(
             title,
             style: TextStyle(
-              fontFamily: 'Oswald',
+              fontFamily: 'Inter',
               fontSize: 16,
               fontWeight: FontWeight.w500,
               color: isSelected ? Colors.black : Colors.grey,

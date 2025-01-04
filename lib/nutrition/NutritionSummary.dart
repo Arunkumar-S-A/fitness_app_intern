@@ -131,7 +131,7 @@ class NutritionSummary extends StatelessWidget {
   }) {
     return Column(
       children: [
-        Icon(icon, color: color, size: width * 0.08),
+        Icon(icon, color: color, size: width * 0.1),
         const SizedBox(height: 8),
         Text(
           '$calories kcal',
@@ -188,7 +188,7 @@ class NutritionSummary extends StatelessWidget {
         const SizedBox(height: 5),
         SizedBox(
           width: width * 0.2,
-          height: 12,
+          height: 8,
           child: LinearProgressIndicator(
             value: consumed / total,
             backgroundColor: Colors.grey[300],

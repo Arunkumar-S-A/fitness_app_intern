@@ -1,5 +1,6 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'CameraScreen.dart';
 import 'package:camera/camera.dart';
 
@@ -40,15 +41,19 @@ class _MealListState extends State<MealList> {
   };
 
   Future<void> _openCamera() async {
-    final cameras = await availableCameras();
-    final firstCamera = cameras.first;
+    try {
+      final cameras = await availableCameras();
+      final firstCamera = cameras.first;
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => CameraScreen(camera: firstCamera),
-      ),
-    );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CameraScreen(cameras: cameras),
+        ),
+      );
+    } catch (e) {
+      AlertDialog(semanticLabel: 'Error initializing camera: $e');
+    }
   }
 
   void _showFoodInputOverlay(String meal) {

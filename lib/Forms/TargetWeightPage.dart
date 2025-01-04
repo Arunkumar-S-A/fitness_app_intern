@@ -52,7 +52,7 @@ class TargetWeightPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: height * 0.02),
+              SizedBox(height: height * 0.017),
               IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
@@ -62,8 +62,8 @@ class TargetWeightPage extends StatelessWidget {
                 child: Text(
                   "Set your target weight",
                   style: TextStyle(
-                    fontFamily: 'Oswald',
-                    fontSize: 40,
+                    fontFamily: 'Inter',
+                    fontSize: 36,
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF08244B),
                     letterSpacing: -0.4,
@@ -107,52 +107,50 @@ class TargetWeightPage extends StatelessWidget {
               ),
               SizedBox(height: height * 0.02),
               Center(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () => _onNext(context),
-                      child: Container(
-                        width: width * 0.4,
-                        height: height * 0.07,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFD9D9D9),
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          ),
+                child: GestureDetector(
+                  onTap: () => _onNext(context),
+                  child: Container(
+                    width: width * 0.4,
+                    height: height * 0.07,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFD9D9D9),
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Next',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                          color: Colors.black,
                         ),
                       ),
                     ),
-                    SizedBox(height: height * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        7,
-                        (index) => Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 2),
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: index == 5
-                                ? Colors.black
-                                : Colors.grey.withOpacity(0.3),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.03),
-                  ],
+                  ),
                 ),
               ),
+              SizedBox(height: height * 0.02),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    7,
+                    (index) => Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 2),
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: index == 5
+                            ? Colors.black
+                            : Colors.grey.withOpacity(0.3),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: height * 0.03),
             ],
           ),
         ),
@@ -203,7 +201,7 @@ class _WeightPickerState extends State<WeightPicker> {
             color: Color(0xFF111111),
           ),
         ),
-        SizedBox(height: height * 0.02),
+        SizedBox(height: height * 0.03),
         Stack(
           alignment: Alignment.center,
           children: [
@@ -238,7 +236,7 @@ class _WeightPickerState extends State<WeightPicker> {
                         weight.toString(),
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 20,
+                          fontSize: 26,
                           color: _currentWeight == weight
                               ? Colors.black
                               : Colors.grey,

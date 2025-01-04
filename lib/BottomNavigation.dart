@@ -2,39 +2,14 @@ import 'package:flutter/material.dart';
 import 'HomeScreen.dart';
 import 'NutritionPage.dart';
 import 'WorkoutScreen.dart';
+import 'SleepStatisticsPage.dart';
+import 'ProfileScreen.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
 
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
-}
-
-class SleepPage extends StatelessWidget {
-  const SleepPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Sleep Page',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Profile Page',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
@@ -52,12 +27,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             _selectedIndex = index;
           });
         },
-        children: [
+        children: const [
           HomeScreen(),
-          SleepPage(),
+          SleepStatisticsPage(),
           NutritionPage(),
           WorkoutScreen(),
-          ProfilePage(),
+          ProfileScreen(fromDashboard: false),
         ],
       ),
       bottomNavigationBar: Container(

@@ -35,9 +35,9 @@ class ProgressSection extends StatelessWidget {
           const Text(
             'Your Progress',
             style: TextStyle(
-              fontFamily: 'Oswald',
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
+              fontFamily: 'Inter',
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
           ),

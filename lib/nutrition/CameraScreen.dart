@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CameraScreen extends StatefulWidget {
-  final CameraDescription camera;
+  final List<CameraDescription> cameras;
 
-  const CameraScreen({super.key, required this.camera});
+  const CameraScreen({super.key, required this.cameras});
 
   @override
   _CameraScreenState createState() => _CameraScreenState();
@@ -15,12 +17,24 @@ class CameraScreen extends StatefulWidget {
 class _CameraScreenState extends State<CameraScreen> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
+  int _selectedCameraIndex = 0;
+  FlashMode _flashMode = FlashMode.off;
 
   @override
   void initState() {
     super.initState();
+    _requestPermissions();
+    _initializeCamera();
+  }
+
+  Future<void> _requestPermissions() async {
+    await Permission.camera.request();
+    await Permission.storage.request();
+  }
+
+  void _initializeCamera() {
     _controller = CameraController(
-      widget.camera,
+      widget.cameras[_selectedCameraIndex],
       ResolutionPreset.high,
     );
     _initializeControllerFuture = _controller.initialize();
@@ -45,6 +59,46 @@ class _CameraScreenState extends State<CameraScreen> {
     }
   }
 
+  void _accessGallery() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      print('Selected image path: ${pickedFile.path}');
+    }
+  }
+
+  void _flipCamera() {
+    setState(() {
+      _selectedCameraIndex = (_selectedCameraIndex + 1) % widget.cameras.length;
+      _initializeCamera();
+    });
+  }
+
+  void _toggleFlash() {
+    setState(() {
+      if (_flashMode == FlashMode.off) {
+        _flashMode = FlashMode.auto;
+      } else if (_flashMode == FlashMode.auto) {
+        _flashMode = FlashMode.always;
+      } else {
+        _flashMode = FlashMode.off;
+      }
+      _controller.setFlashMode(_flashMode);
+    });
+  }
+
+  IconData _getFlashIcon() {
+    switch (_flashMode) {
+      case FlashMode.auto:
+        return Icons.flash_auto;
+      case FlashMode.always:
+        return Icons.flash_on;
+      case FlashMode.off:
+      default:
+        return Icons.flash_off;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,29 +110,55 @@ class _CameraScreenState extends State<CameraScreen> {
               children: [
                 CameraPreview(_controller),
                 Positioned(
-                  top: 40,
-                  left: 20,
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: () => Navigator.pop(context),
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon:
+                              const Icon(Icons.arrow_back, color: Colors.black),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        IconButton(
+                          icon: Icon(_getFlashIcon(), color: Colors.black),
+                          onPressed: _toggleFlash,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Positioned(
-                  bottom: 40,
-                  left: 20,
-                  child: IconButton(
-                    icon: const Icon(Icons.photo, color: Colors.white),
-                    onPressed: () {
-                      // Handle recent photo button
-                    },
-                  ),
-                ),
-                Positioned(
-                  bottom: 40,
-                  right: 20,
-                  child: IconButton(
-                    icon: const Icon(Icons.camera, color: Colors.white),
-                    onPressed: _takePicture,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.photo, color: Colors.black),
+                          onPressed: _accessGallery,
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.camera, color: Colors.black),
+                          onPressed: _takePicture,
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.flip_camera_android,
+                              color: Colors.black),
+                          onPressed: _flipCamera,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
