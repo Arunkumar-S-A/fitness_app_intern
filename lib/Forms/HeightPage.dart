@@ -32,14 +32,14 @@ class HeightPage extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
               ),
               SizedBox(height: height * 0.06),
-              const Center(
+              Center(
                 child: Text(
                   "How tall are you?",
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 36,
+                    fontSize: width * 0.09,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF08244B),
+                    color: const Color(0xFF08244B),
                     letterSpacing: -0.4,
                     height: 0.95,
                   ),
@@ -66,15 +66,15 @@ class HeightPage extends StatelessWidget {
                         height: height * 0.07,
                         decoration: BoxDecoration(
                           color: const Color(0xFFD9D9D9),
-                          border: Border.all(color: Colors.black),
+                          border: Border.all(color: Colors.black, width: 0.5),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             'Next',
                             style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 16,
+                              fontSize: width * 0.04,
                               color: Colors.black,
                             ),
                           ),
@@ -88,8 +88,8 @@ class HeightPage extends StatelessWidget {
                         7,
                         (index) => Container(
                           margin: const EdgeInsets.symmetric(horizontal: 2),
-                          width: 8,
-                          height: 8,
+                          width: width * 0.02,
+                          height: width * 0.02,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: index == 3
@@ -166,24 +166,25 @@ class _HeightPickerState extends State<HeightPicker> {
             children: [
               Text(
                 _currentHeight.toStringAsFixed(0),
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 75,
+                  fontSize: width * 0.18,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xFF111111),
+                  color: const Color(0xFF111111),
                   letterSpacing: -1.5,
                   height: 1.0,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 12.0, left: 8.0),
+              Padding(
+                padding:
+                    EdgeInsets.only(bottom: width * 0.03, left: width * 0.02),
                 child: Text(
                   'cm',
                   style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 36,
+                    fontSize: width * 0.09,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF111111),
+                    color: const Color(0xFF111111),
                     letterSpacing: -0.432,
                     height: 1.22,
                   ),
@@ -191,9 +192,9 @@ class _HeightPickerState extends State<HeightPicker> {
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: width * 0.06),
           SizedBox(
-            height: 116,
+            height: width * 0.3,
             width: width * 0.9,
             child: NotificationListener<ScrollNotification>(
               onNotification: (scrollNotification) {
@@ -221,33 +222,38 @@ class _HeightPickerState extends State<HeightPicker> {
                         children: [
                           Container(
                             width: 2,
-                            height: isLongMark ? 56 : (isMiddleMark ? 24 : 16),
+                            height: isLongMark
+                                ? width * 0.14
+                                : (isMiddleMark ? width * 0.06 : width * 0.04),
                             color: const Color(0xFF111111),
-                            margin: EdgeInsets.only(top: isLongMark ? 30 : 46),
+                            margin: EdgeInsets.only(
+                                top:
+                                    isLongMark ? width * 0.075 : width * 0.115),
                           ),
                           if (isLongMark)
                             Container(
                               width: 4,
-                              height: 56,
+                              height: width * 0.14,
                               color: const Color(0xFF111111),
-                              margin: const EdgeInsets.only(top: 30),
+                              margin: EdgeInsets.only(top: width * 0.075),
                             ),
-                          SizedBox(width: isLongMark ? 8 : 4),
+                          SizedBox(
+                              width: isLongMark ? width * 0.02 : width * 0.01),
                         ],
                       );
                     },
                   ),
                   Positioned(
-                    top: 30,
+                    top: width * 0.075,
                     child: Container(
                       width: 4,
-                      height: 56,
+                      height: width * 0.14,
                       color: const Color(0xFF111111),
                     ),
                   ),
                   Positioned(
                     bottom: 0,
-                    left: 32,
+                    left: width * 0.08,
                     child: SizedBox(
                       width: width * 0.8,
                       child: Row(
@@ -255,21 +261,21 @@ class _HeightPickerState extends State<HeightPicker> {
                         children: [
                           Text(
                             (_currentHeight - 2).toStringAsFixed(0),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 14,
+                              fontSize: width * 0.035,
                               fontWeight: FontWeight.w400,
-                              color: Color(0xFF08244B),
+                              color: const Color(0xFF08244B),
                               letterSpacing: -0.028,
                             ),
                           ),
                           Text(
                             (_currentHeight + 2).toStringAsFixed(0),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 14,
+                              fontSize: width * 0.035,
                               fontWeight: FontWeight.w400,
-                              color: Color(0xFF08244B),
+                              color: const Color(0xFF08244B),
                               letterSpacing: -0.028,
                             ),
                           ),

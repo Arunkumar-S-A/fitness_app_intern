@@ -188,7 +188,7 @@ class NutritionSummary extends StatelessWidget {
         const SizedBox(height: 5),
         SizedBox(
           width: width * 0.2,
-          height: 8,
+          height: width * 0.01,
           child: LinearProgressIndicator(
             value: consumed / total,
             backgroundColor: Colors.grey[300],

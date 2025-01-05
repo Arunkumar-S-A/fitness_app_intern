@@ -28,6 +28,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.2
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/appicon.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/appicon.png"
+
 
 flutter:
   uses-material-design: true
@@ -54,6 +64,8 @@ flutter:
     - assets/images/corew.png
     - assets/images/cardiow.png
     - assets/images/armw.png
+    - assets/images/burpees.png
+    - assets/images/jumping_jacks.png
 
   fonts:
     - family: Poppins

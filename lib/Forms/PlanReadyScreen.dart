@@ -268,7 +268,7 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: height * 0.02),
+              SizedBox(height: height * 0.04),
               GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: const Icon(Icons.arrow_back, size: 24),
@@ -277,13 +277,13 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
               Center(
                 child: Column(
                   children: [
-                    const Text(
+                    Text(
                       'Your Plan is Ready!',
                       style: TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: 40,
+                        fontSize: width * 0.09,
                         fontWeight: FontWeight.normal,
-                        color: Color(0xFF08244B),
+                        color: const Color(0xFF08244B),
                       ),
                     ),
                     SizedBox(height: height * 0.02),
@@ -291,22 +291,22 @@ class _PlanReadyScreenState extends State<PlanReadyScreen> {
                       onTap: _showMacroDetails,
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             'Daily Food Calorie Budget',
                             style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 16,
+                              fontSize: width * 0.04,
                               color: Colors.black87,
                             ),
                           ),
                           SizedBox(height: height * 0.01),
                           Text(
                             '${(tdee - calorieDeficit).toStringAsFixed(0)} kcal',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'Inter',
-                              fontSize: 32,
+                              fontSize: width * 0.08,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF08244B),
+                              color: const Color(0xFF08244B),
                             ),
                           ),
                         ],

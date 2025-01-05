@@ -34,7 +34,6 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
   ];
 
   int selectedIndex = -1;
-  int currentPage = 0;
   final int totalPages = 7;
 
   @override
@@ -56,15 +55,16 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                 onPressed: () => Navigator.pop(context),
               ),
               SizedBox(height: height * 0.04),
-              const Center(
+              Center(
                 child: Text(
                   'Activity Level',
                   style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 36,
-                      color: Color(0xFF08244B),
-                      height: 1.2,
-                      fontWeight: FontWeight.w400),
+                    fontFamily: 'Inter',
+                    fontSize: width * 0.09,
+                    color: const Color(0xFF08244B),
+                    height: 1.2,
+                    fontWeight: FontWeight.w400,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -75,7 +75,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                   itemBuilder: (context, index) {
                     bool isSelected = selectedIndex == index;
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 12.0),
+                      padding: EdgeInsets.only(bottom: height * 0.015),
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -95,13 +95,12 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                                 width: 0.5),
                             color: isSelected
                                 ? const Color(0xFFD9D9D9)
-                                : Colors.white, // Use D9D9D9 when selected
+                                : Colors.white,
                             boxShadow: [
                               BoxShadow(
                                 color: isSelected
                                     ? Colors.black.withOpacity(0.3)
-                                    : Colors
-                                        .transparent, // Remove shadow for not selected
+                                    : Colors.transparent,
                                 spreadRadius: 0.5,
                                 blurRadius: 5,
                                 offset: const Offset(0, 2),
@@ -115,8 +114,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                                 child: Container(
                                   color: isSelected
                                       ? const Color(0xFFD9D9D9)
-                                      : Colors
-                                          .white, // Use D9D9D9 when selected
+                                      : Colors.white,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: width * 0.04),
                                   child: Row(
@@ -135,7 +133,7 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                                               ? Colors.black
                                               : const Color(0xFF1B1464),
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 16,
+                                          fontSize: width * 0.04,
                                         ),
                                       ),
                                     ],
@@ -158,10 +156,10 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       activityLevels[index]['description']!,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontFamily: 'Poppins',
                                         color: Colors.black,
-                                        fontSize: 13,
+                                        fontSize: width * 0.035,
                                       ),
                                     ),
                                   ),
@@ -199,15 +197,15 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                     height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Colors.black, width: 0.5),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'Next',
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 16,
+                          fontSize: width * 0.04,
                           color: Colors.black,
                         ),
                       ),
@@ -223,8 +221,8 @@ class _ActivityLevelScreenState extends State<ActivityLevelScreen> {
                     totalPages,
                     (index) => Container(
                       margin: const EdgeInsets.symmetric(horizontal: 2),
-                      width: 8,
-                      height: 8,
+                      width: width * 0.02,
+                      height: width * 0.02,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: index == 6

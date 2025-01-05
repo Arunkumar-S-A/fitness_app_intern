@@ -1,9 +1,11 @@
+/* lib/DashBoard.dart */
 import 'package:flutter/material.dart';
 import 'LoginScreen.dart';
 import 'ProfileScreen.dart';
 import 'SettingScreen.dart';
 import 'HelpScreen.dart';
 import 'ContactUsScreen.dart';
+import 'TermsAndConditionsScreen.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -54,6 +56,8 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -61,7 +65,7 @@ class DashBoard extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.all(screenWidth * 0.05),
                 alignment: Alignment.centerLeft,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,12 +74,12 @@ class DashBoard extends StatelessWidget {
                       radius: 40,
                       backgroundImage: AssetImage('assets/images/profile.png'),
                     ),
-                    const SizedBox(height: 10),
-                    const Text(
+                    SizedBox(height: screenWidth * 0.02),
+                    Text(
                       'Angelin Mary',
                       style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 20,
+                        fontSize: screenWidth * 0.055,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -83,6 +87,7 @@ class DashBoard extends StatelessWidget {
                       'abcd@gmail.com',
                       style: TextStyle(
                         fontFamily: 'Poppins',
+                        fontSize: screenWidth * 0.035,
                         color: Colors.grey[600],
                       ),
                     ),
@@ -91,24 +96,32 @@ class DashBoard extends StatelessWidget {
               ),
               Expanded(
                 child: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
                   children: [
                     _buildMenuItem(context, Icons.person_outline, 'My Profile',
-                        const ProfileScreen(fromDashboard: true)),
+                        const ProfileScreen(fromDashboard: true), screenWidth),
                     _buildMenuItem(context, Icons.payment, 'Payment',
-                        const PaymentScreen()),
+                        const PaymentScreen(), screenWidth),
                     _buildMenuItem(context, Icons.mail_outline, 'Contact Us',
-                        ContactUsScreen()),
+                        ContactUsScreen(), screenWidth),
+                    _buildMenuItem(context, Icons.settings, 'Settings',
+                        SettingsScreen(), screenWidth),
                     _buildMenuItem(
-                        context, Icons.settings, 'Settings', SettingsScreen()),
-                    _buildMenuItem(context, Icons.description_outlined,
-                        'Terms and Conditions', const TermsScreen()),
+                        context,
+                        Icons.description_outlined,
+                        'Terms and Conditions',
+                        TermsAndConditionsScreen(),
+                        screenWidth),
+                    _buildMenuItem(context, Icons.help_outline, 'Help',
+                        HelpScreen(), screenWidth),
                     _buildMenuItem(
-                        context, Icons.help_outline, 'Help', HelpScreen()),
-                    _buildMenuItem(context, Icons.chat_bubble_outline,
-                        'Chat with our AI assistant', const ChatScreen()),
+                        context,
+                        Icons.chat_bubble_outline,
+                        'Chat with our AI assistant',
+                        const ChatScreen(),
+                        screenWidth),
                     _buildMenuItem(context, Icons.logout_rounded, 'Logout',
-                        const LoginScreen()),
+                        const LoginScreen(), screenWidth),
                   ],
                 ),
               ),
@@ -119,19 +132,19 @@ class DashBoard extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuItem(
-      BuildContext context, IconData icon, String title, Widget screen) {
+  Widget _buildMenuItem(BuildContext context, IconData icon, String title,
+      Widget screen, double screenWidth) {
     return Card(
       elevation: 0,
       color: const Color(0xFFD9D9D9),
-      margin: const EdgeInsets.symmetric(vertical: 5),
+      margin: EdgeInsets.symmetric(vertical: screenWidth * 0.001),
       child: ListTile(
-        leading: Icon(icon, color: Colors.black87),
+        leading: Icon(icon, color: Colors.black87, size: screenWidth * 0.06),
         title: Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 16,
+            fontSize: screenWidth * 0.04,
           ),
         ),
         onTap: () => _navigateToScreen(context, screen),

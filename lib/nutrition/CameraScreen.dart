@@ -101,6 +101,9 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
@@ -108,28 +111,33 @@ class _CameraScreenState extends State<CameraScreen> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Stack(
               children: [
-                CameraPreview(_controller),
+                Positioned.fill(
+                  child: CameraPreview(_controller),
+                ),
                 Positioned(
                   top: 0,
                   left: 0,
                   right: 0,
-                  child: Container(
-                    color: Colors.black.withOpacity(0.5),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon:
-                              const Icon(Icons.arrow_back, color: Colors.black),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        IconButton(
-                          icon: Icon(_getFlashIcon(), color: Colors.black),
-                          onPressed: _toggleFlash,
-                        ),
-                      ],
+                  child: SafeArea(
+                    child: Container(
+                      color: Colors.black.withOpacity(0.5),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05, vertical: height * 0.03),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back,
+                                color: Colors.white, size: width * 0.08),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          IconButton(
+                            icon: Icon(_getFlashIcon(),
+                                color: Colors.white, size: width * 0.08),
+                            onPressed: _toggleFlash,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -137,27 +145,31 @@ class _CameraScreenState extends State<CameraScreen> {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: Container(
-                    color: Colors.black.withOpacity(0.5),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.photo, color: Colors.black),
-                          onPressed: _accessGallery,
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.camera, color: Colors.black),
-                          onPressed: _takePicture,
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.flip_camera_android,
-                              color: Colors.black),
-                          onPressed: _flipCamera,
-                        ),
-                      ],
+                  child: SafeArea(
+                    child: Container(
+                      color: Colors.black.withOpacity(0.5),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05, vertical: height * 0.03),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.photo,
+                                color: Colors.white, size: width * 0.08),
+                            onPressed: _accessGallery,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.camera,
+                                color: Colors.white, size: width * 0.08),
+                            onPressed: _takePicture,
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.flip_camera_android,
+                                color: Colors.white, size: width * 0.08),
+                            onPressed: _flipCamera,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

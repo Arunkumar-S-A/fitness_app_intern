@@ -1,3 +1,4 @@
+/* lib/home/CustomSearchBar.dart */
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -14,13 +15,15 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      width: MediaQuery.of(context).size.width - 5, // 30px padding on each side
-      height: 48,
+      width: screenWidth * 0.9, // 90% of screen width
+      height: screenWidth * 0.12, // Adjust height based on screen width
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(screenWidth * 0.02),
         border: Border.all(
           color: Colors.grey.withOpacity(0.5),
           width: 1,
@@ -29,11 +32,12 @@ class CustomSearchBar extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 12, right: 8),
+          Padding(
+            padding: EdgeInsets.only(
+                left: screenWidth * 0.03, right: screenWidth * 0.03),
             child: Icon(
               Icons.search,
-              size: 24,
+              size: screenWidth * 0.06,
               color: Colors.black87,
             ),
           ),
@@ -41,22 +45,23 @@ class CustomSearchBar extends StatelessWidget {
             child: TextField(
               controller: controller,
               onChanged: onSearch,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 20,
+                fontSize: screenWidth * 0.05,
                 fontWeight: FontWeight.w400,
-                color: Color(0xFF111111),
+                color: const Color(0xFF111111),
               ),
               decoration: InputDecoration(
                 hintText: placeholder,
                 hintStyle: TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 20,
+                  fontSize: screenWidth * 0.05,
                   fontWeight: FontWeight.w400,
                   color: Colors.black87.withOpacity(0.5),
                 ),
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: screenWidth * 0.02),
               ),
             ),
           ),

@@ -53,14 +53,14 @@ class _GenderSelectionState extends State<GenderSelection> {
               ),
               SizedBox(height: height * 0.08),
               // Title
-              const Center(
+              Center(
                 child: Text(
                   "What's your gender?",
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 36,
+                    fontSize: width * 0.09,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF08244B),
+                    color: const Color(0xFF08244B),
                     letterSpacing: -0.4,
                     height: 0.95,
                   ),
@@ -72,6 +72,8 @@ class _GenderSelectionState extends State<GenderSelection> {
                 'Male',
                 'assets/images/male.png', // Local image path
                 'male',
+                width,
+                height,
               ),
               SizedBox(height: height * 0.02),
               // Female Option
@@ -79,6 +81,8 @@ class _GenderSelectionState extends State<GenderSelection> {
                 'Female',
                 'assets/images/female.png', // Local image path
                 'female',
+                width,
+                height,
               ),
               const Spacer(),
               // Next Button and Progress Bar
@@ -92,15 +96,15 @@ class _GenderSelectionState extends State<GenderSelection> {
                         height: height * 0.07,
                         decoration: BoxDecoration(
                           color: const Color(0xFFD9D9D9),
-                          border: Border.all(color: Colors.black),
+                          border: Border.all(color: Colors.black, width: 0.5),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             'Next',
                             style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 16,
+                              fontSize: width * 0.04,
                               color: Colors.black,
                             ),
                           ),
@@ -114,8 +118,8 @@ class _GenderSelectionState extends State<GenderSelection> {
                         7,
                         (index) => Container(
                           margin: const EdgeInsets.symmetric(horizontal: 2),
-                          width: 8,
-                          height: 8,
+                          width: width * 0.02,
+                          height: width * 0.02,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: index == 1
@@ -136,8 +140,8 @@ class _GenderSelectionState extends State<GenderSelection> {
     );
   }
 
-  Widget _buildGenderOption(
-      String label, String imagePath, String genderValue) {
+  Widget _buildGenderOption(String label, String imagePath, String genderValue,
+      double width, double height) {
     bool isSelected = selectedGender == genderValue;
 
     return GestureDetector(
@@ -147,11 +151,11 @@ class _GenderSelectionState extends State<GenderSelection> {
         });
       },
       child: Container(
-        height: 170,
+        height: height * 0.2,
         decoration: BoxDecoration(
           color: isSelected ? const Color(0xFFDFDFDF) : const Color(0xDDDFDFDF),
           borderRadius: BorderRadius.circular(32),
-          border: Border.all(color: const Color(0xFF111111), width: 1),
+          border: Border.all(color: const Color(0xFF111111), width: 0.5),
         ),
         child: Stack(
           children: [
@@ -165,23 +169,23 @@ class _GenderSelectionState extends State<GenderSelection> {
               ),
             ),
             Positioned(
-              left: 16,
-              top: 16,
+              left: width * 0.04,
+              top: width * 0.04,
               child: Row(
                 children: [
                   Icon(
                     genderValue == 'male' ? Icons.male : Icons.female,
-                    size: 24,
+                    size: width * 0.06,
                     color: Colors.black,
                   ),
-                  const SizedBox(width: 4),
+                  SizedBox(width: width * 0.01),
                   Text(
                     label,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontSize: width * 0.04,
                       fontWeight: FontWeight.w400,
-                      color: Color(0xFF111111),
+                      color: const Color(0xFF111111),
                       letterSpacing: -0.048,
                     ),
                   ),
@@ -189,11 +193,11 @@ class _GenderSelectionState extends State<GenderSelection> {
               ),
             ),
             Positioned(
-              left: 16,
-              bottom: 16,
+              left: width * 0.04,
+              bottom: width * 0.04,
               child: Icon(
                 isSelected ? Icons.check_box : Icons.check_box_outline_blank,
-                size: 24,
+                size: width * 0.06,
                 color: Colors.black,
               ),
             ),

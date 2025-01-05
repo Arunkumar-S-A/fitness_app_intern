@@ -1,3 +1,4 @@
+/* lib/LoginScreen.dart */
 import 'package:flutter/material.dart';
 import 'SignupScreen.dart';
 import 'BottomNavigation.dart';
@@ -18,46 +19,44 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
+        width: screenWidth,
+        height: screenHeight,
+        decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(35),
-          border: Border.all(color: const Color(0xFFD5C6C6)),
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.1),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: height * 0.15),
-                const Text(
+                SizedBox(height: screenHeight * 0.15),
+                Text(
                   'Login',
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 36,
+                    fontSize: screenWidth * 0.09,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF111111),
+                    color: const Color(0xFF111111),
                   ),
                 ),
-                const SizedBox(height: 25),
-                _buildEmailField(),
-                const SizedBox(height: 20),
-                _buildPasswordField(),
-                const SizedBox(height: 30),
-                _buildForgotPasswordAndSignup(),
-                const SizedBox(height: 17),
-                _buildSubmitButton(width),
-                const SizedBox(height: 66),
-                _buildOrConnectVia(),
-                const SizedBox(height: 26),
-                _buildSocialIcons(),
+                SizedBox(height: screenHeight * 0.03),
+                _buildEmailField(screenWidth),
+                SizedBox(height: screenHeight * 0.02),
+                _buildPasswordField(screenWidth),
+                SizedBox(height: screenHeight * 0.03),
+                _buildForgotPasswordAndSignup(screenWidth),
+                SizedBox(height: screenHeight * 0.02),
+                _buildSubmitButton(screenWidth),
+                SizedBox(height: screenHeight * 0.08),
+                _buildOrConnectVia(screenWidth),
+                SizedBox(height: screenHeight * 0.03),
+                _buildSocialIcons(screenWidth),
               ],
             ),
           ),
@@ -66,31 +65,31 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildEmailField() {
+  Widget _buildEmailField(double screenWidth) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Email',
           style: TextStyle(
             fontFamily: 'Inter',
-            fontSize: 20,
+            fontSize: screenWidth * 0.05,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: screenWidth * 0.005),
         Container(
-          height: 57,
+          height: screenWidth * 0.15,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(screenWidth * 0.025),
             border: Border.all(color: Colors.grey.shade300),
           ),
           child: Row(
             children: [
-              const SizedBox(width: 13),
+              SizedBox(width: screenWidth * 0.03),
               const Icon(Icons.email, size: 22, color: Colors.grey),
-              const SizedBox(width: 11),
+              SizedBox(width: screenWidth * 0.03),
               Expanded(
                 child: TextField(
                   controller: _emailController,
@@ -98,10 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     border: InputBorder.none,
                     hintText: 'Enter your email',
                   ),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 16,
-                    color: Color(0xFF111111),
+                    fontSize: screenWidth * 0.04,
+                    color: const Color(0xFF111111),
                   ),
                 ),
               ),
@@ -112,31 +111,31 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildPasswordField() {
+  Widget _buildPasswordField(double screenWidth) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Password',
           style: TextStyle(
             fontFamily: 'Inter',
-            fontSize: 20,
+            fontSize: screenWidth * 0.05,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: screenWidth * 0.005),
         Container(
-          height: 57,
+          height: screenWidth * 0.15,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(screenWidth * 0.025),
             border: Border.all(color: Colors.grey.shade300),
           ),
           child: Row(
             children: [
-              const SizedBox(width: 12),
+              SizedBox(width: screenWidth * 0.03),
               const Icon(Icons.lock, size: 22, color: Colors.grey),
-              const SizedBox(width: 12),
+              SizedBox(width: screenWidth * 0.03),
               Expanded(
                 child: TextField(
                   controller: _passwordController,
@@ -145,10 +144,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     border: InputBorder.none,
                     hintText: 'Enter your password',
                   ),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 16,
-                    color: Color(0xFF111111),
+                    fontSize: screenWidth * 0.04,
+                    color: const Color(0xFF111111),
                   ),
                 ),
               ),
@@ -171,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildForgotPasswordAndSignup() {
+  Widget _buildForgotPasswordAndSignup(double screenWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -182,23 +181,23 @@ class _LoginScreenState extends State<LoginScreen> {
               MaterialPageRoute(builder: (context) => const SignupScreen()),
             );
           },
-          child: const Text(
+          child: Text(
             'Signup',
             style: TextStyle(
               fontFamily: 'Poppins',
-              fontSize: 16,
-              color: Color(0xFF111111),
+              fontSize: screenWidth * 0.04,
+              color: const Color(0xFF111111),
             ),
           ),
         ),
         TextButton(
           onPressed: () {},
-          child: const Text(
+          child: Text(
             'Forgot Password?',
             style: TextStyle(
               fontFamily: 'Poppins',
-              fontSize: 16,
-              color: Color(0xFF111111),
+              fontSize: screenWidth * 0.04,
+              color: const Color(0xFF111111),
             ),
           ),
         ),
@@ -206,14 +205,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSubmitButton(double width) {
+  Widget _buildSubmitButton(double screenWidth) {
     return Container(
-      width: width * 0.4,
-      height: 56,
+      width: screenWidth * 0.4,
+      height: screenWidth * 0.14,
       decoration: BoxDecoration(
         color: const Color(0xFFD9D9D9),
         border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(screenWidth * 0.04),
       ),
       child: TextButton(
         onPressed: () {
@@ -222,11 +221,11 @@ class _LoginScreenState extends State<LoginScreen> {
             MaterialPageRoute(builder: (context) => const BottomNavigation()),
           );
         },
-        child: const Text(
+        child: Text(
           'Submit',
           style: TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 16,
+            fontSize: screenWidth * 0.04,
             color: Colors.black,
           ),
         ),
@@ -234,44 +233,47 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildOrConnectVia() {
-    return const Row(
+  Widget _buildOrConnectVia(double screenWidth) {
+    return Row(
       children: [
         Expanded(
           child: Divider(
             color: Colors.grey,
             thickness: 2,
-            endIndent: 10,
+            endIndent: screenWidth * 0.02,
           ),
         ),
         Text(
           'Or connect via',
           style: TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 14,
-            color: Color(0xFF111111),
+            fontSize: screenWidth * 0.035,
+            color: const Color(0xFF111111),
           ),
         ),
         Expanded(
           child: Divider(
             color: Colors.grey,
             thickness: 2,
-            indent: 10,
+            indent: screenWidth * 0.02,
           ),
         ),
       ],
     );
   }
 
-  Widget _buildSocialIcons() {
+  Widget _buildSocialIcons(double screenWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset('assets/images/google.png', width: 40, height: 40),
-        const SizedBox(width: 60),
-        Image.asset('assets/images/facebook.png', width: 40, height: 40),
-        const SizedBox(width: 60),
-        Image.asset('assets/images/instagram.png', width: 40, height: 40),
+        Image.asset('assets/images/google.png',
+            width: screenWidth * 0.1, height: screenWidth * 0.1),
+        SizedBox(width: screenWidth * 0.15),
+        Image.asset('assets/images/facebook.png',
+            width: screenWidth * 0.1, height: screenWidth * 0.1),
+        SizedBox(width: screenWidth * 0.15),
+        Image.asset('assets/images/instagram.png',
+            width: screenWidth * 0.1, height: screenWidth * 0.1),
       ],
     );
   }

@@ -56,9 +56,16 @@ class WorkoutHeader extends StatelessWidget {
             onTap: onNotificationTap,
             child: Container(
               padding: EdgeInsets.all(width * 0.02),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
               child: Icon(Icons.notifications,
                   size: width * 0.08, color: Colors.black),

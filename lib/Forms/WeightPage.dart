@@ -32,14 +32,14 @@ class WeightPage extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
               ),
               SizedBox(height: height * 0.03),
-              const Center(
+              Center(
                 child: Text(
                   "What's your weight?",
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 36,
+                    fontSize: width * 0.09,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF08244B),
+                    color: const Color(0xFF08244B),
                     letterSpacing: -0.4,
                     height: 0.95,
                   ),
@@ -56,7 +56,6 @@ class WeightPage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: height * 0.02),
               const Spacer(),
               // Next button and progress bar
               Center(
@@ -69,15 +68,15 @@ class WeightPage extends StatelessWidget {
                         height: height * 0.07,
                         decoration: BoxDecoration(
                           color: const Color(0xFFD9D9D9),
-                          border: Border.all(color: Colors.black),
+                          border: Border.all(color: Colors.black, width: 0.5),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             'Next',
                             style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 16,
+                              fontSize: width * 0.04,
                               color: Colors.black,
                             ),
                           ),
@@ -91,8 +90,8 @@ class WeightPage extends StatelessWidget {
                         7,
                         (index) => Container(
                           margin: const EdgeInsets.symmetric(horizontal: 2),
-                          width: 8,
-                          height: 8,
+                          width: width * 0.02,
+                          height: width * 0.02,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: index == 2
@@ -143,17 +142,18 @@ class _WeightPickerState extends State<WeightPicker> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Column(
       children: [
         Text(
           '$_currentWeight kg',
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 75,
+            fontSize: width * 0.18,
             fontWeight: FontWeight.w400,
-            color: Color(0xFF111111),
+            color: const Color(0xFF111111),
           ),
         ),
         SizedBox(height: height * 0.03),
@@ -162,10 +162,10 @@ class _WeightPickerState extends State<WeightPicker> {
           children: [
             Container(
               height: height * 0.1,
-              width: 100,
+              width: width * 0.25,
               decoration: BoxDecoration(
                 color: const Color(0xFFD9D9D9),
-                border: Border.all(color: Colors.black),
+                border: Border.all(color: Colors.black, width: 0.5),
                 borderRadius: BorderRadius.circular(15),
               ),
             ),
@@ -173,7 +173,7 @@ class _WeightPickerState extends State<WeightPicker> {
               height: height * 0.4,
               child: ListWheelScrollView.useDelegate(
                 controller: _scrollController,
-                itemExtent: 50,
+                itemExtent: height * 0.07,
                 perspective: 0.005,
                 diameterRatio: 2.5,
                 physics: const FixedExtentScrollPhysics(),
@@ -191,7 +191,7 @@ class _WeightPickerState extends State<WeightPicker> {
                         weight.toString(),
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 26,
+                          fontSize: width * 0.065,
                           color: _currentWeight == weight
                               ? Colors.black
                               : Colors.grey,

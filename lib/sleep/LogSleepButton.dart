@@ -1,3 +1,4 @@
+/* lib/sleep/LogSleepButton.dart */
 import 'package:flutter/material.dart';
 
 class LogSleepButton extends StatelessWidget {
@@ -5,6 +6,8 @@ class LogSleepButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return ElevatedButton(
       onPressed: () {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -13,19 +16,24 @@ class LogSleepButton extends StatelessWidget {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFD9D9D9),
-        minimumSize: const Size(104, 39),
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth * 0.1,
+          vertical: screenWidth * 0.03,
+        ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(screenWidth * 0.035),
           side: const BorderSide(
             color: Color(0xFF787878), // Border color
             width: 1, // Border width
-          ), // Change the border radius here
+          ),
         ),
       ),
-      child: const Text(
+      child: Text(
         'Log Sleep',
         style: TextStyle(
-          color: Colors.black, // Change the font color here
+          fontFamily: 'Poppins',
+          color: Colors.black, // Font color
+          fontSize: screenWidth * 0.035, // Responsive font size
         ),
       ),
     );

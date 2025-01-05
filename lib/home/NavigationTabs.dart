@@ -1,3 +1,4 @@
+/* lib/home/NavigationTabs.dart */
 import 'package:flutter/material.dart';
 
 class NavigationTabs extends StatefulWidget {
@@ -25,20 +26,22 @@ class _NavigationTabsState extends State<NavigationTabs> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildTab("Discover", Icons.explore, 0),
-              _buildTab("Trainers", Icons.people, 1),
-              _buildTab("My Plan", Icons.assignment, 2),
+              _buildTab("Discover", Icons.explore, 0, screenWidth),
+              _buildTab("Trainers", Icons.people, 1, screenWidth),
+              _buildTab("My Plan", Icons.assignment, 2, screenWidth),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: screenWidth * 0.02),
           Stack(
             children: [
               Container(
@@ -47,9 +50,9 @@ class _NavigationTabsState extends State<NavigationTabs> {
               ),
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 300),
-                left: _getIndicatorPosition(),
+                left: _getIndicatorPosition(screenWidth),
                 child: Container(
-                  width: MediaQuery.of(context).size.width / 3 - 60,
+                  width: screenWidth / 3 - screenWidth * 0.16,
                   height: 5,
                   decoration: BoxDecoration(
                     color: Colors.pink,
@@ -64,7 +67,7 @@ class _NavigationTabsState extends State<NavigationTabs> {
     );
   }
 
-  Widget _buildTab(String title, IconData icon, int index) {
+  Widget _buildTab(String title, IconData icon, int index, double screenWidth) {
     final bool isSelected = _selectedIndex == index;
     return GestureDetector(
       onTap: () {
@@ -78,13 +81,14 @@ class _NavigationTabsState extends State<NavigationTabs> {
           Icon(
             icon,
             color: isSelected ? Colors.black : Colors.grey,
+            size: screenWidth * 0.07,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: screenWidth * 0.01),
           Text(
             title,
             style: TextStyle(
               fontFamily: 'Inter',
-              fontSize: 16,
+              fontSize: screenWidth * 0.04,
               fontWeight: FontWeight.w500,
               color: isSelected ? Colors.black : Colors.grey,
             ),
@@ -94,9 +98,8 @@ class _NavigationTabsState extends State<NavigationTabs> {
     );
   }
 
-  double _getIndicatorPosition() {
-    // Calculate position based on selected index
-    return _selectedIndex * (MediaQuery.of(context).size.width / 3);
+  double _getIndicatorPosition(double screenWidth) {
+    return _selectedIndex * (screenWidth / 3);
   }
 }
 

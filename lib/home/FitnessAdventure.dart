@@ -1,3 +1,4 @@
+/* lib/home/FitnessAdventure.dart */
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -19,19 +20,18 @@ class FitnessAdventure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      padding: EdgeInsets.all(width * 0.04),
+      padding: EdgeInsets.all(screenWidth * 0.04),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(screenWidth * 0.05),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+            blurRadius: screenWidth * 0.03,
+            offset: Offset(0, screenWidth * 0.01),
           ),
         ],
       ),
@@ -40,23 +40,23 @@ class FitnessAdventure extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Inter',
-              fontSize: 20,
+              fontSize: screenWidth * 0.05,
               fontWeight: FontWeight.w600,
               color: Colors.black,
             ),
           ),
-          SizedBox(height: height * 0.02),
+          SizedBox(height: screenWidth * 0.04),
           Center(
             child: CircularPercentIndicator(
-              radius: width * 0.25,
-              lineWidth: width * 0.035,
+              radius: screenWidth * 0.25,
+              lineWidth: screenWidth * 0.035,
               percent: progressPercentage,
               center: Text(
                 '${(progressPercentage * 100).toInt()}%',
                 style: TextStyle(
-                  fontSize: width * 0.05,
+                  fontSize: screenWidth * 0.05,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -66,15 +66,16 @@ class FitnessAdventure extends StatelessWidget {
               circularStrokeCap: CircularStrokeCap.round,
             ),
           ),
-          SizedBox(height: height * 0.02),
+          SizedBox(height: screenWidth * 0.04),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              _buildStat(Icons.check_circle, 'Completed', workoutCompleteCount,
+                  screenWidth),
               _buildStat(
-                  Icons.check_circle, 'Completed', workoutCompleteCount, width),
+                  Icons.timelapse, 'In Progress', inProgressCount, screenWidth),
               _buildStat(
-                  Icons.timelapse, 'In Progress', inProgressCount, width),
-              _buildStat(Icons.timer, 'Best (min)', personalBestMinutes, width),
+                  Icons.timer, 'Best (min)', personalBestMinutes, screenWidth),
             ],
           ),
         ],
@@ -82,19 +83,20 @@ class FitnessAdventure extends StatelessWidget {
     );
   }
 
-  Widget _buildStat(IconData icon, String label, int value, double width) {
+  Widget _buildStat(
+      IconData icon, String label, int value, double screenWidth) {
     return Column(
       children: [
         Icon(
           icon,
-          size: width * 0.08,
+          size: screenWidth * 0.08,
           color: Colors.blue,
         ),
-        SizedBox(height: width * 0.02),
+        SizedBox(height: screenWidth * 0.02),
         Text(
           '$value',
           style: TextStyle(
-            fontSize: width * 0.04,
+            fontSize: screenWidth * 0.04,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
@@ -102,7 +104,7 @@ class FitnessAdventure extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            fontSize: width * 0.03,
+            fontSize: screenWidth * 0.03,
             color: Colors.grey,
           ),
         ),

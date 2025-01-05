@@ -27,7 +27,7 @@ class WorkoutScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const WorkoutMenu(),
+                          builder: (context) => WorkoutMenu(),
                         ),
                       );
                     },

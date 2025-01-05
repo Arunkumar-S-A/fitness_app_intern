@@ -1,14 +1,17 @@
+/* lib/WorkoutMenu.dart */
 import 'package:flutter/material.dart';
 import 'workoutsmenu/WorkoutsMenuHeader.dart';
 import 'workoutsmenu/WorkoutSection.dart';
 import 'workoutsmenu/CompleteWorkoutButton.dart';
-import 'workoutsmenu/AchievementPage.dart'; // Import the AchievementsPage
+import 'workoutsmenu/AchievementPage.dart';
 
 class WorkoutMenu extends StatelessWidget {
   const WorkoutMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -17,33 +20,22 @@ class WorkoutMenu extends StatelessWidget {
             children: [
               const WorkoutsMenuHeader(),
               const WorkoutSection(
-                title: 'Push-Ups',
-                imageUrl:
-                    'https://dashboard.codeparrot.ai/api/assets/Z3gcegT5FckTQ390',
-                repsAndRest: '15 reps   60s rest',
+                title: 'Jumping Jacks',
+                imageUrl: 'assets/images/jumping_jacks.png',
+                repsAndRest: '20 reps   30s rest',
                 description:
-                    'Perform push-ups with proper form to engage your upper body muscles.',
-                completedSets: [true, false, false],
+                    'Jumping jacks are a full-body workout that can target major muscle groups, strengthen bones, and improve cardiovascular fitness and heart health.',
+                completedSets: [true, true, false],
               ),
               const WorkoutSection(
-                title: 'Pull-Ups',
-                imageUrl:
-                    'https://dashboard.codeparrot.ai/api/assets/Z3gcpgT5FckTQ392',
-                repsAndRest: '10 reps   90s rest',
+                title: 'Burpees',
+                imageUrl: 'assets/images/burpees.png',
+                repsAndRest: '10 reps   60s rest',
                 description:
-                    'Use a pull-up bar to strengthen your back and biceps.',
+                    'Burpees are a full-body exercise that can improve your cardiovascular fitness and strength.',
                 completedSets: [false, false, false],
               ),
-              const WorkoutSection(
-                title: 'Bench Press',
-                imageUrl:
-                    'https://dashboard.codeparrot.ai/api/assets/Z3gcegT5FckTQ390',
-                repsAndRest: '12 reps   60s rest',
-                description:
-                    'Perform bench presses to target your chest muscles.',
-                completedSets: [false, false, false],
-              ),
-              const SizedBox(height: 24),
+              SizedBox(height: screenWidth * 0.06),
               CompleteWorkoutButton(
                 onPressed: () {
                   Navigator.push(
@@ -54,7 +46,7 @@ class WorkoutMenu extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: screenWidth * 0.06),
             ],
           ),
         ),

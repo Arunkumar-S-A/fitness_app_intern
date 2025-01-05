@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'LoginScreen.dart';
+import 'workoutsmenu/WorkoutsMenuHeader.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -151,172 +152,171 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFD9D9D9),
-        title: const Text(
-          'Settings',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 26,
-            fontFamily: 'Oswald',
-            color: Colors.black,
-          ),
-        ),
-        elevation: 0,
-      ),
       backgroundColor: Colors.white,
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-        children: [
-          _buildSectionHeader('Account Settings'),
-          _buildListTile(
-            'Edit Profile',
-            Icons.person_outline,
-            onTap: () {
-              // Navigate to profile editing screen
-            },
-          ),
-          _buildListTile(
-            'Change Password',
-            Icons.lock_outline,
-            onTap: () {
-              // Navigate to password change screen
-            },
-          ),
-          _buildListTile(
-            'Privacy Settings',
-            Icons.privacy_tip_outlined,
-            onTap: () {
-              // Navigate to privacy settings
-            },
-          ),
-          _buildSectionHeader('App Settings'),
-          _buildSwitchTile(
-            'Push Notifications',
-            Icons.notifications_outlined,
-            notificationsEnabled,
-            (value) {
-              setState(() {
-                notificationsEnabled = value;
-              });
-            },
-          ),
-          _buildSwitchTile(
-            'Workout Reminders',
-            Icons.alarm,
-            workoutReminders,
-            (value) {
-              setState(() {
-                workoutReminders = value;
-              });
-            },
-          ),
-          _buildListTile(
-            'Language',
-            Icons.language,
-            trailing: Text(
-              selectedLanguage,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                color: Colors.black,
+      body: SafeArea(
+        child: Column(
+          children: [
+            WorkoutsMenuHeader(
+              title: 'Settings',
+              onBackPressed: () => Navigator.pop(context),
+            ),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                children: [
+                  _buildSectionHeader('Account Settings'),
+                  _buildListTile(
+                    'Edit Profile',
+                    Icons.person_outline,
+                    onTap: () {
+                      // Navigate to profile editing screen
+                    },
+                  ),
+                  _buildListTile(
+                    'Change Password',
+                    Icons.lock_outline,
+                    onTap: () {
+                      // Navigate to password change screen
+                    },
+                  ),
+                  _buildListTile(
+                    'Privacy Settings',
+                    Icons.privacy_tip_outlined,
+                    onTap: () {
+                      // Navigate to privacy settings
+                    },
+                  ),
+                  _buildSectionHeader('App Settings'),
+                  _buildSwitchTile(
+                    'Push Notifications',
+                    Icons.notifications_outlined,
+                    notificationsEnabled,
+                    (value) {
+                      setState(() {
+                        notificationsEnabled = value;
+                      });
+                    },
+                  ),
+                  _buildSwitchTile(
+                    'Workout Reminders',
+                    Icons.alarm,
+                    workoutReminders,
+                    (value) {
+                      setState(() {
+                        workoutReminders = value;
+                      });
+                    },
+                  ),
+                  _buildListTile(
+                    'Language',
+                    Icons.language,
+                    trailing: Text(
+                      selectedLanguage,
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                      ),
+                    ),
+                    onTap: () {
+                      _showLanguageDialog();
+                    },
+                  ),
+                  _buildListTile(
+                    'Units',
+                    Icons.straighten,
+                    trailing: Text(
+                      selectedUnit,
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                      ),
+                    ),
+                    onTap: () {
+                      _showUnitDialog();
+                    },
+                  ),
+                  _buildSectionHeader('Support'),
+                  _buildListTile(
+                    'Help Center',
+                    Icons.help_outline,
+                    onTap: () {
+                      _launchURL('https://yourapp.com/help');
+                    },
+                  ),
+                  _buildListTile(
+                    'Contact Support',
+                    Icons.support_agent,
+                    onTap: () {
+                      _launchEmail();
+                    },
+                  ),
+                  _buildListTile(
+                    'Report a Bug',
+                    Icons.bug_report_outlined,
+                    onTap: () {
+                      _launchEmail();
+                    },
+                  ),
+                  _buildSectionHeader('About'),
+                  _buildListTile(
+                    'Rate App',
+                    Icons.star_outline,
+                    onTap: () => _rateApp(),
+                  ),
+                  _buildListTile(
+                    'Share App',
+                    Icons.share_outlined,
+                    onTap: () {
+                      Share.share('Check out this amazing gym app!');
+                    },
+                  ),
+                  _buildListTile(
+                    'Privacy Policy',
+                    Icons.policy_outlined,
+                    onTap: () {
+                      _launchURL('https://yourapp.com/privacy');
+                    },
+                  ),
+                  _buildListTile(
+                    'Terms of Service',
+                    Icons.description_outlined,
+                    onTap: () {
+                      _launchURL('https://yourapp.com/terms');
+                    },
+                  ),
+                  _buildListTile(
+                    'App Version',
+                    Icons.info_outline,
+                    trailing: Text(
+                      appVersion,
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  _buildSectionHeader('Account Actions'),
+                  _buildListTile(
+                    'Clear Cache',
+                    Icons.cleaning_services_outlined,
+                    onTap: () {
+                      _showClearCacheDialog();
+                    },
+                  ),
+                  _buildListTile(
+                    'Log Out',
+                    Icons.logout,
+                    textColor: Colors.red,
+                    onTap: () {
+                      _showLogoutDialog();
+                    },
+                  ),
+                  SizedBox(height: screenHeight * 0.05)
+                ],
               ),
             ),
-            onTap: () {
-              _showLanguageDialog();
-            },
-          ),
-          _buildListTile(
-            'Units',
-            Icons.straighten,
-            trailing: Text(
-              selectedUnit,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                color: Colors.black,
-              ),
-            ),
-            onTap: () {
-              _showUnitDialog();
-            },
-          ),
-          _buildSectionHeader('Support'),
-          _buildListTile(
-            'Help Center',
-            Icons.help_outline,
-            onTap: () {
-              _launchURL('https://yourapp.com/help');
-            },
-          ),
-          _buildListTile(
-            'Contact Support',
-            Icons.support_agent,
-            onTap: () {
-              _launchEmail();
-            },
-          ),
-          _buildListTile(
-            'Report a Bug',
-            Icons.bug_report_outlined,
-            onTap: () {
-              _launchEmail();
-            },
-          ),
-          _buildSectionHeader('About'),
-          _buildListTile(
-            'Rate App',
-            Icons.star_outline,
-            onTap: () => _rateApp(),
-          ),
-          _buildListTile(
-            'Share App',
-            Icons.share_outlined,
-            onTap: () {
-              Share.share('Check out this amazing gym app!');
-            },
-          ),
-          _buildListTile(
-            'Privacy Policy',
-            Icons.policy_outlined,
-            onTap: () {
-              _launchURL('https://yourapp.com/privacy');
-            },
-          ),
-          _buildListTile(
-            'Terms of Service',
-            Icons.description_outlined,
-            onTap: () {
-              _launchURL('https://yourapp.com/terms');
-            },
-          ),
-          _buildListTile(
-            'App Version',
-            Icons.info_outline,
-            trailing: Text(
-              appVersion,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                color: Colors.black,
-              ),
-            ),
-          ),
-          _buildSectionHeader('Account Actions'),
-          _buildListTile(
-            'Clear Cache',
-            Icons.cleaning_services_outlined,
-            onTap: () {
-              _showClearCacheDialog();
-            },
-          ),
-          _buildListTile(
-            'Log Out',
-            Icons.logout,
-            textColor: Colors.red,
-            onTap: () {
-              _showLogoutDialog();
-            },
-          ),
-          SizedBox(height: screenHeight * 0.05)
-        ],
+          ],
+        ),
       ),
     );
   }

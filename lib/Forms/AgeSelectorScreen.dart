@@ -43,38 +43,38 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                 onPressed: () => Navigator.pop(context),
               ),
               SizedBox(height: height * 0.03),
-              const Center(
+              Center(
                 child: Text(
                   "Let's Get to Know You",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 26,
-                    color: Color(0xFF111111),
+                    fontSize: width * 0.065,
+                    color: const Color(0xFF111111),
                   ),
                 ),
               ),
               SizedBox(height: height * 0.02),
-              const Center(
+              Center(
                 child: Text(
                   'We use this information to create a workout and\nnutrition plan tailored just for you!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 12,
-                    color: Color(0xFF787878),
-                    height: 2,
+                    fontSize: width * 0.03,
+                    color: const Color(0xFF787878),
+                    height: 1.5,
                   ),
                 ),
               ),
               SizedBox(height: height * 0.03),
-              const Center(
+              Center(
                 child: Text(
                   'How young are you?',
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 36,
-                    color: Color(0xFF08244B),
+                    fontSize: width * 0.09,
+                    color: const Color(0xFF08244B),
                     letterSpacing: -0.4,
                   ),
                 ),
@@ -88,7 +88,7 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                     width: width * 0.25,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Colors.black, width: 0.5),
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
@@ -111,10 +111,10 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                           return Center(
                             child: Text(
                               age.toString(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontFamily: 'Poppins',
-                                fontSize: 32,
-                                color: Color(0xFF111111),
+                                fontSize: width * 0.08,
+                                color: const Color(0xFF111111),
                               ),
                             ),
                           );
@@ -134,15 +134,15 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                     height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Colors.black, width: 0.5),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'Next',
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 16,
+                          fontSize: width * 0.04,
                           color: Colors.black,
                         ),
                       ),
@@ -157,8 +157,8 @@ class _AgeSelectorScreenState extends State<AgeSelectorScreen> {
                   7,
                   (index) => Container(
                     margin: const EdgeInsets.symmetric(horizontal: 2),
-                    width: 8,
-                    height: 8,
+                    width: width * 0.02,
+                    height: width * 0.02,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: index == 0

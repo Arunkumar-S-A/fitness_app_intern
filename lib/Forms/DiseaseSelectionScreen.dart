@@ -53,13 +53,13 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                 ],
               ),
               SizedBox(height: height * 0.02),
-              const Center(
+              Center(
                 child: Text(
                   'Select the diseases that you have',
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 32,
-                    color: Color(0xFF08244B),
+                    fontSize: width * 0.08,
+                    color: const Color(0xFF08244B),
                     height: 1.2,
                   ),
                   textAlign: TextAlign.center,
@@ -70,8 +70,8 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: width < 600 ? 2 : 3,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 24,
+                    crossAxisSpacing: width * 0.04,
+                    mainAxisSpacing: height * 0.03,
                     childAspectRatio: 3,
                   ),
                   itemCount: displayedDiseases.length,
@@ -91,19 +91,17 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: isSelected
-                              ? const Color(
-                                  0xFFD9D9D9) // Previously Colors.white
-                              : Colors
-                                  .white, // Previously const Color(0xFFD9D9D9)
+                              ? const Color(0xFFD9D9D9)
+                              : Colors.white,
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(color: Colors.grey, width: 1),
                         ),
                         alignment: Alignment.center,
                         child: Text(
                           disease,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 18,
+                            fontSize: width * 0.045,
                             color: Colors.black,
                           ),
                           textAlign: TextAlign.center,
@@ -122,16 +120,16 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                   },
                   child: Text(
                     showAllDiseases ? 'Show Less' : 'See More',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 14,
+                      fontSize: width * 0.035,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF08244B),
+                      color: const Color(0xFF08244B),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.06),
+              SizedBox(height: height * 0.02),
               Center(
                 child: Container(
                   width: width * 0.4,
@@ -142,11 +140,11 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                     border: Border.all(color: Colors.grey),
                   ),
                   alignment: Alignment.center,
-                  child: const Text(
+                  child: Text(
                     'Selected',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontSize: width * 0.04,
                       color: Colors.black,
                     ),
                   ),
@@ -168,15 +166,15 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                     height: height * 0.07,
                     decoration: BoxDecoration(
                       color: const Color(0xFFD9D9D9),
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Colors.black, width: 0.5),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'Next',
                         style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 16,
+                          fontSize: width * 0.04,
                           color: Colors.black,
                         ),
                       ),
@@ -192,8 +190,8 @@ class _DiseaseSelectionScreenState extends State<DiseaseSelectionScreen> {
                     7,
                     (index) => Container(
                       margin: const EdgeInsets.symmetric(horizontal: 2),
-                      width: 8,
-                      height: 8,
+                      width: width * 0.02,
+                      height: width * 0.02,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: index == 4

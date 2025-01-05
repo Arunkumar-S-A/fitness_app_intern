@@ -1,4 +1,3 @@
-import 'package:fitness_ai/sleep/MetricTile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'sleep/SleepHeader.dart';
@@ -7,6 +6,7 @@ import 'sleep/SleepChart.dart';
 import 'sleep/TimePicker.dart';
 import 'sleep/LogSleepButton.dart';
 import 'sleep/CalendarOverlay.dart';
+import 'sleep/MetricTile.dart';
 
 class SleepStatisticsPage extends StatefulWidget {
   const SleepStatisticsPage({super.key});
@@ -93,6 +93,7 @@ class _SleepStatisticsPageState extends State<SleepStatisticsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     String duration = _calculateSleepDuration();
 
     return Scaffold(
@@ -107,25 +108,19 @@ class _SleepStatisticsPageState extends State<SleepStatisticsPage> {
                   subtitle: 'Rest Well',
                   onNotificationTap: () {},
                 ),
+                SizedBox(height: screenWidth * 0.02),
+                const SleepDateSelector(), // Moved outside of the Padding
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(screenWidth * 0.04),
                       child: Column(
                         children: [
-                          SleepDateSelector(
-                            displayDate: _displayDate,
-                            onPreviousDay: _onPreviousDay,
-                            onNextDay: _onNextDay,
-                            onCalendarTap: () =>
-                                setState(() => _showCalendar = true),
+                          Container(
+                            width: double.infinity,
+                            child: const SleepChart(),
                           ),
-                          const SizedBox(height: 16.0),
-                          SleepChart(
-                            bedTime: _bedTime,
-                            wakeTime: _wakeTime,
-                          ),
-                          const SizedBox(height: 16.0),
+                          SizedBox(height: screenWidth * 0.04),
                           Column(
                             children: [
                               MetricTile(
@@ -140,7 +135,8 @@ class _SleepStatisticsPageState extends State<SleepStatisticsPage> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            padding: EdgeInsets.symmetric(
+                                vertical: screenWidth * 0.04),
                             child: Column(
                               children: [
                                 TimePicker(
@@ -150,7 +146,7 @@ class _SleepStatisticsPageState extends State<SleepStatisticsPage> {
                                       _selectTime(context, true),
                                   time: _bedTime.format(context),
                                 ),
-                                const SizedBox(height: 8.0),
+                                SizedBox(height: screenWidth * 0.02),
                                 TimePicker(
                                   title: 'Wake up Time',
                                   isBedTime: false,

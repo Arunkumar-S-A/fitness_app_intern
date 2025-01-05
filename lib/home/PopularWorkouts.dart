@@ -1,3 +1,4 @@
+/* lib/home/PopularWorkouts.dart */
 import 'package:flutter/material.dart';
 
 class PopularWorkouts extends StatelessWidget {
@@ -33,32 +34,34 @@ class PopularWorkouts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
           child: Text(
             title,
-            style: const TextStyle(
-              fontSize: 20,
+            style: TextStyle(
+              fontSize: screenWidth * 0.05,
               fontWeight: FontWeight.w600,
               fontFamily: 'Inter',
               color: Colors.black,
             ),
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: screenWidth * 0.04),
         SizedBox(
-          height: 180,
+          height: screenWidth * 0.45,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
             itemCount: workouts.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(
-                  right: index != workouts.length - 1 ? 16.0 : 0,
+                  right: index != workouts.length - 1 ? screenWidth * 0.04 : 0,
                 ),
                 child: workouts[index],
               );
@@ -84,9 +87,11 @@ class WorkoutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      width: 291,
-      height: 149,
+      width: screenWidth * 0.7,
+      height: screenWidth * 0.35,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         image: DecorationImage(
@@ -110,33 +115,33 @@ class WorkoutCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(screenWidth * 0.03),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: screenWidth * 0.04,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: screenWidth * 0.01),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.star,
                       color: Colors.yellow,
-                      size: 16,
+                      size: screenWidth * 0.04,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: screenWidth * 0.01),
                     Text(
                       rating.toString(),
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14,
+                        fontSize: screenWidth * 0.035,
                       ),
                     ),
                   ],

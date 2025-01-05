@@ -1,53 +1,51 @@
+/* lib/workoutsmenu/CompleteWorkoutButton.dart */
 import 'package:flutter/material.dart';
-import 'AchievementPage.dart';
 
 class CompleteWorkoutButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String text;
-  final double width;
-  final double height;
 
   const CompleteWorkoutButton({
     super.key,
     this.onPressed,
     this.text = 'Complete Workout',
-    this.width = 199,
-    this.height = 55,
   });
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      width: width,
-      height: height,
+      padding: EdgeInsets.symmetric(
+        horizontal: screenWidth * 0.04,
+        vertical: screenWidth * 0.03, // Added vertical padding for height
+      ),
       decoration: BoxDecoration(
         color: const Color(0xFFD9D9D9),
-        borderRadius: BorderRadius.circular(27.5),
+        borderRadius: BorderRadius.circular(screenWidth * 0.07),
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: onPressed,
-          borderRadius: BorderRadius.circular(27.5),
+          borderRadius: BorderRadius.circular(screenWidth * 0.08),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 7),
-                child: Icon(
-                  Icons.check_circle_sharp, // Example icon
-                  size: 30,
-                  color: Colors.black,
-                ),
+              Icon(
+                Icons.check_circle_sharp,
+                size: screenWidth * 0.08,
+                color: Colors.black,
               ),
-              const SizedBox(width: 14),
+              SizedBox(width: screenWidth * 0.02),
               Text(
                 text,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Poppins',
-                  fontSize: 14,
+                  fontSize: screenWidth * 0.035,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xFF111111),
+                  color: const Color(0xFF111111),
                 ),
               ),
             ],

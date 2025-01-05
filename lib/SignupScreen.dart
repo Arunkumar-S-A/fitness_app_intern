@@ -20,83 +20,82 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        width: 412,
-        height: 917,
-        decoration: BoxDecoration(
+        width: screenWidth,
+        height: screenHeight,
+        decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(35),
-          border: Border.all(color: const Color(0xFFD5C6C6)),
         ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 51.5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 40),
-                IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.black),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                const SizedBox(height: 20),
-                const Center(
-                  child: Text(
-                    'Join us',
-                    style: TextStyle(
-                      fontFamily: 'Oswald',
-                      fontSize: 36,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xFF111111),
-                    ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: screenHeight * 0.05),
+              IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              SizedBox(height: screenHeight * 0.02),
+              Center(
+                child: Text(
+                  'Join us',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: screenWidth * 0.09,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xFF111111),
                   ),
                 ),
-                const SizedBox(height: 25),
-                _buildEmailField(),
-                const SizedBox(height: 20),
-                _buildPasswordField(),
-                const SizedBox(height: 20),
-                _buildConfirmPasswordField(),
-                const SizedBox(height: 30),
-                Center(child: _buildRegisterButton()),
-              ],
-            ),
+              ),
+              SizedBox(height: screenHeight * 0.03),
+              _buildEmailField(screenWidth),
+              SizedBox(height: screenHeight * 0.02),
+              _buildPasswordField(screenWidth),
+              SizedBox(height: screenHeight * 0.02),
+              _buildConfirmPasswordField(screenWidth),
+              const Spacer(),
+              Center(child: _buildRegisterButton(screenWidth)),
+              SizedBox(height: screenHeight * 0.05),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget _buildEmailField() {
+  Widget _buildEmailField(double screenWidth) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Email',
           style: TextStyle(
             fontFamily: 'Inter',
-            fontSize: 20,
+            fontSize: screenWidth * 0.05,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: screenWidth * 0.005),
         Container(
-          height: 57,
-          width: 309,
+          height: screenWidth * 0.15,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(screenWidth * 0.025),
             border: Border.all(color: Colors.grey.shade300),
           ),
           child: Row(
             children: [
-              const SizedBox(width: 13),
+              SizedBox(width: screenWidth * 0.03),
               const Icon(Icons.email, size: 22, color: Colors.grey),
-              const SizedBox(width: 21),
+              SizedBox(width: screenWidth * 0.03),
               Expanded(
                 child: TextField(
                   controller: _emailController,
@@ -104,10 +103,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     border: InputBorder.none,
                     hintText: 'Enter your email',
                   ),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 16,
-                    color: Color(0xFF111111),
+                    fontSize: screenWidth * 0.04,
+                    color: const Color(0xFF111111),
                   ),
                 ),
               ),
@@ -118,32 +117,31 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildPasswordField() {
+  Widget _buildPasswordField(double screenWidth) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Password',
           style: TextStyle(
             fontFamily: 'Oswald',
-            fontSize: 20,
+            fontSize: screenWidth * 0.05,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: screenWidth * 0.005),
         Container(
-          height: 57,
-          width: 309,
+          height: screenWidth * 0.15,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(screenWidth * 0.025),
             border: Border.all(color: Colors.grey.shade300),
           ),
           child: Row(
             children: [
-              const SizedBox(width: 12),
+              SizedBox(width: screenWidth * 0.03),
               const Icon(Icons.lock, size: 22, color: Colors.grey),
-              const SizedBox(width: 12),
+              SizedBox(width: screenWidth * 0.03),
               Expanded(
                 child: TextField(
                   controller: _passwordController,
@@ -152,10 +150,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     border: InputBorder.none,
                     hintText: 'Enter your password',
                   ),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 16,
-                    color: Color(0xFF111111),
+                    fontSize: screenWidth * 0.04,
+                    color: const Color(0xFF111111),
                   ),
                 ),
               ),
@@ -178,32 +176,31 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildConfirmPasswordField() {
+  Widget _buildConfirmPasswordField(double screenWidth) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Confirm Password',
           style: TextStyle(
             fontFamily: 'Oswald',
-            fontSize: 20,
+            fontSize: screenWidth * 0.05,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
           ),
         ),
-        const SizedBox(height: 2),
+        SizedBox(height: screenWidth * 0.005),
         Container(
-          height: 57,
-          width: 309,
+          height: screenWidth * 0.15,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(screenWidth * 0.025),
             border: Border.all(color: Colors.grey.shade300),
           ),
           child: Row(
             children: [
-              const SizedBox(width: 12),
+              SizedBox(width: screenWidth * 0.03),
               const Icon(Icons.lock, size: 22, color: Colors.grey),
-              const SizedBox(width: 12),
+              SizedBox(width: screenWidth * 0.03),
               Expanded(
                 child: TextField(
                   controller: _confirmPasswordController,
@@ -212,10 +209,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     border: InputBorder.none,
                     hintText: 'Confirm your password',
                   ),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 16,
-                    color: Color(0xFF111111),
+                    fontSize: screenWidth * 0.04,
+                    color: const Color(0xFF111111),
                   ),
                 ),
               ),
@@ -240,14 +237,14 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildRegisterButton() {
+  Widget _buildRegisterButton(double screenWidth) {
     return Container(
-      width: 176,
-      height: 56,
+      width: screenWidth * 0.45,
+      height: screenWidth * 0.14,
       decoration: BoxDecoration(
         color: const Color(0xFFD9D9D9),
         border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(screenWidth * 0.04),
       ),
       child: TextButton(
         onPressed: () {
@@ -256,22 +253,15 @@ class _SignupScreenState extends State<SignupScreen> {
             MaterialPageRoute(builder: (context) => const AgeSelectorScreen()),
           );
         },
-        child: const Text(
+        child: Text(
           'Register',
           style: TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 16,
+            fontSize: screenWidth * 0.04,
             color: Colors.black,
           ),
         ),
       ),
     );
   }
-}
-
-// Default props
-class SignupScreenDefaults {
-  static const String defaultEmail = 'abcd@outlook.com';
-  static const String defaultPassword = '********';
-  static const String defaultConfirmPassword = '********';
 }

@@ -1,4 +1,3 @@
-// edit_profile_screen.dart
 import 'package:flutter/material.dart';
 import 'ProfileScreen.dart';
 
@@ -46,25 +45,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Widget _buildTextField(
       String label, TextEditingController controller, IconData icon) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Padding(
-      padding: const EdgeInsets.only(bottom: 24.0),
+      padding: EdgeInsets.only(bottom: screenWidth * 0.06),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(icon, size: 24, color: const Color(0xFF08244B)),
-              const SizedBox(width: 12),
+              Icon(icon,
+                  size: screenWidth * 0.06, color: const Color(0xFF08244B)),
+              SizedBox(width: screenWidth * 0.03),
               Text(
                 label,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF08244B),
+                style: TextStyle(
+                  fontSize: screenWidth * 0.04,
+                  fontFamily: 'Inter',
+                  color: const Color(0xFF08244B),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: screenWidth * 0.02),
           Container(
             decoration: BoxDecoration(
               border: Border.all(color: const Color(0xFF08244B)),
@@ -72,9 +75,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
             child: TextFormField(
               controller: controller,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Color(0xFF08244B),
+              style: TextStyle(
+                fontSize: screenWidth * 0.04,
+                fontFamily: 'Poppins',
+                color: const Color(0xFF08244B),
               ),
               decoration: const InputDecoration(
                 contentPadding:
@@ -110,130 +114,185 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Edit Profile',
-          style: TextStyle(color: Colors.black87),
-        ),
-        backgroundColor: const Color(0xFFD9D9D9),
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black87),
-          onPressed: () => Navigator.pop(context),
-        ),
-        actions: const [],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                // Profile Image Section
-                Center(
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.grey[300]!,
-                            width: 2,
-                          ),
-                          image: const DecorationImage(
-                            image: AssetImage('assets/images/profile.png'),
-                            fit: BoxFit.cover,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            ProfileHeader(
+              title: 'Edit Profile',
+              onBackPressed: () => Navigator.pop(context),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.all(screenWidth * 0.04),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        // Profile Image Section
+                        Center(
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: screenWidth * 0.3,
+                                height: screenWidth * 0.3,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.grey[300]!,
+                                    width: 2,
+                                  ),
+                                  image: const DecorationImage(
+                                    image:
+                                        AssetImage('assets/images/profile.png'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xffd9d9d9),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.camera_alt,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                    onPressed: () {
+                                      // Handle image change
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 2,
-                            ),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.camera_alt,
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                        SizedBox(height: screenWidth * 0.02),
+
+                        // Form Fields
+                        _buildTextField(
+                            'Full Name', _nameController, Icons.person),
+                        _buildTextField('Username', _usernameController,
+                            Icons.person_outline),
+                        _buildTextField(
+                            'Email', _emailController, Icons.email_outlined),
+                        _buildTextField(
+                            'Phone', _phoneController, Icons.phone_outlined),
+                        _buildTextField('Location', _locationController,
+                            Icons.location_on_outlined),
+
+                        // Save Button
+                        SizedBox(height: screenWidth * 0.06),
+                        SizedBox(
+                          width: screenWidth * 0.3,
+                          height: screenWidth * 0.12,
+                          child: ElevatedButton(
                             onPressed: () {
-                              // Handle image change
-                              // You can implement image picker functionality here
+                              if (_formKey.currentState!.validate()) {
+                                final updatedProfile = UserProfile(
+                                  name: _nameController.text,
+                                  username: _usernameController.text,
+                                  email: _emailController.text,
+                                  phone: _phoneController.text,
+                                  location: _locationController.text,
+                                );
+                                Navigator.pop(context, updatedProfile);
+                              }
                             },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFD9D9D9),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Text(
+                              'Save',
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: screenWidth * 0.04,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 32),
-
-                // Form Fields
-                _buildTextField('Full Name', _nameController, Icons.person),
-                _buildTextField(
-                    'Username', _usernameController, Icons.person_outline),
-                _buildTextField(
-                    'Email', _emailController, Icons.email_outlined),
-                _buildTextField(
-                    'Phone', _phoneController, Icons.phone_outlined),
-                _buildTextField('Location', _locationController,
-                    Icons.location_on_outlined),
-
-                // Save Button
-                const SizedBox(height: 32),
-                SizedBox(
-                  width: 99,
-                  height: 53,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        final updatedProfile = UserProfile(
-                          name: _nameController.text,
-                          username: _usernameController.text,
-                          email: _emailController.text,
-                          phone: _phoneController.text,
-                          location: _locationController.text,
-                        );
-                        BoxDecoration(
-                          color: const Color(0xFFD9D9D9),
-                          border: Border.all(color: const Color(0xFF08244B)),
-                          borderRadius: BorderRadius.circular(15),
-                        );
-                        Navigator.pop(context, updatedProfile);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFD9D9D9),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 16,
-                        color: Colors.black,
-                      ),
+                      ],
                     ),
                   ),
                 ),
-              ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileHeader extends StatelessWidget {
+  final String title;
+  final VoidCallback? onBackPressed;
+
+  const ProfileHeader({
+    super.key,
+    required this.title,
+    this.onBackPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    return Container(
+      padding: EdgeInsets.symmetric(
+          horizontal: width * 0.05, vertical: height * 0.02),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: const Color(0xFFD9D9D9),
+        borderRadius: BorderRadius.circular(0),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            onTap: onBackPressed ?? () => Navigator.pop(context),
+            child: Container(
+              padding: EdgeInsets.all(width * 0.01),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.arrow_back,
+                  size: width * 0.06, color: Colors.black),
             ),
           ),
-        ),
+          Expanded(
+            child: Center(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: width * 0.06,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
