@@ -6,7 +6,8 @@ import 'workoutsmenu/CompleteWorkoutButton.dart';
 import 'workoutsmenu/AchievementPage.dart';
 
 class WorkoutMenu extends StatelessWidget {
-  const WorkoutMenu({super.key});
+  final String title;
+  const WorkoutMenu({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class WorkoutMenu extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const WorkoutsMenuHeader(),
+              WorkoutsMenuHeader(title: title),
               const WorkoutSection(
                 title: 'Jumping Jacks',
                 imageUrl: 'assets/images/jumping_jacks.png',

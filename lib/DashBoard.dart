@@ -103,9 +103,9 @@ class DashBoard extends StatelessWidget {
                     _buildMenuItem(context, Icons.payment, 'Payment',
                         const PaymentScreen(), screenWidth),
                     _buildMenuItem(context, Icons.mail_outline, 'Contact Us',
-                        ContactUsScreen(), screenWidth),
+                        const ContactUsScreen(), screenWidth),
                     _buildMenuItem(context, Icons.settings, 'Settings',
-                        SettingsScreen(), screenWidth),
+                        const SettingsScreen(), screenWidth),
                     _buildMenuItem(
                         context,
                         Icons.description_outlined,
@@ -113,7 +113,7 @@ class DashBoard extends StatelessWidget {
                         TermsAndConditionsScreen(),
                         screenWidth),
                     _buildMenuItem(context, Icons.help_outline, 'Help',
-                        HelpScreen(), screenWidth),
+                        const HelpScreen(), screenWidth),
                     _buildMenuItem(
                         context,
                         Icons.chat_bubble_outline,

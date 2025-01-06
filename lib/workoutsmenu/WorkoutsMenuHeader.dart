@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 class WorkoutsMenuHeader extends StatelessWidget {
   final String title;
   final VoidCallback? onBackPressed;
-
   const WorkoutsMenuHeader({
     super.key,
     this.title = 'Full Body Workouts',
     this.onBackPressed,
   });
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: width * 0.05, vertical: height * 0.02),

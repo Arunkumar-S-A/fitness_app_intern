@@ -19,8 +19,10 @@ class WorkoutCard extends StatelessWidget {
     double cardHeight = MediaQuery.of(context).size.height * 0.15;
     double imageWidth = cardHeight * (232 / 155); // Maintain aspect ratio
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: EdgeInsets.symmetric(vertical: height * 0.01),
       width: double.infinity,
       height: cardHeight,
       decoration: BoxDecoration(
@@ -28,7 +30,7 @@ class WorkoutCard extends StatelessWidget {
         color: Colors.white,
         border: Border.all(
           color: const Color(0xFFD9D9D9),
-          width: 2.0,
+          width: 0.5,
         ),
       ),
       child: Row(
@@ -51,37 +53,37 @@ class WorkoutCard extends StatelessWidget {
           // Text section
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(width * 0.04),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Inter',
-                      fontSize: 18,
-                      color: Color(0xFF08244B),
+                      fontSize: width * 0.045,
+                      color: const Color(0xFF08244B),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(height: height * 0.001),
+                  SizedBox(height: height * 0.005),
                   Text(
                     calories,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 11,
-                      color: Color(0xFF111111),
+                      fontSize: width * 0.03,
+                      color: const Color(0xFF111111),
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: height * 0.005),
                   Text(
                     'No. of Exercises: $exercises',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 11,
-                      color: Color(0xFF111111),
+                      fontSize: width * 0.03,
+                      color: const Color(0xFF111111),
                       fontWeight: FontWeight.w400,
                     ),
                   ),

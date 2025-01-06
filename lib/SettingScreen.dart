@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'LoginScreen.dart';
 import 'workoutsmenu/WorkoutsMenuHeader.dart';
 
@@ -19,6 +18,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   String selectedLanguage = 'English';
   String selectedUnit = 'Metric (kg, cm)';
   String appVersion = '1.0.0';
+
+  // Public variable to store screen width
+  late double screenWidth;
 
   @override
   void initState() {
@@ -37,26 +39,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
-  Future<void> _rateApp() async {
-    final InAppReview inAppReview = InAppReview.instance;
-
-    try {
-      if (await inAppReview.isAvailable()) {
-        await inAppReview.requestReview();
-      } else {
-        await inAppReview.openStoreListing(
-          appStoreId: 'YOUR_APP_STORE_ID', // For iOS
-          microsoftStoreId: 'YOUR_MICROSOFT_STORE_ID', // For Windows
-        );
-      }
-    } catch (e) {
-      print('Error requesting review: $e');
-      if (context.mounted) {
-        _showRatingDialog();
-      }
-    }
-  }
-
   void _showRatingDialog() {
     showDialog(
       context: context,
@@ -65,25 +47,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              title: const Text(
+              backgroundColor: Colors.white,
+              title: Text(
                 'Rate Our App',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontFamily: 'Poppins',
-                  color: Color(0xFF08244B),
+                  color: const Color(0xFF08244B),
+                  fontSize: screenWidth * 0.05,
                 ),
               ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
+                  Text(
                     'How would you rate your experience with our app?',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Colors.black,
+                      fontSize: screenWidth * 0.04,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: screenWidth * 0.02),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(
@@ -91,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       (index) => IconButton(
                         icon: Icon(
                           starStates[index] ? Icons.star : Icons.star_border,
-                          size: 32,
+                          size: screenWidth * 0.08,
                           color: starStates[index] ? Colors.amber : Colors.grey,
                         ),
                         onPressed: () {
@@ -112,11 +97,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text(
+                  child: Text(
                     'Maybe Later',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      color: Color(0xFF08244B),
+                      color: const Color(0xFF08244B),
+                      fontSize: screenWidth * 0.04,
                     ),
                   ),
                 ),
@@ -130,11 +116,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'Submit',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      color: Color(0xFF08244B),
+                      color: const Color(0xFF08244B),
+                      fontSize: screenWidth * 0.04,
                     ),
                   ),
                 ),
@@ -148,8 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    screenWidth = MediaQuery.of(context).size.width; // Initialize screenWidth
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -162,7 +148,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Expanded(
               child: ListView(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                 children: [
                   _buildSectionHeader('Account Settings'),
                   _buildListTile(
@@ -212,9 +198,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Icons.language,
                     trailing: Text(
                       selectedLanguage,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Poppins',
                         color: Colors.black,
+                        fontSize: screenWidth * 0.04,
                       ),
                     ),
                     onTap: () {
@@ -226,9 +213,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Icons.straighten,
                     trailing: Text(
                       selectedUnit,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Poppins',
                         color: Colors.black,
+                        fontSize: screenWidth * 0.04,
                       ),
                     ),
                     onTap: () {
@@ -261,7 +249,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   _buildListTile(
                     'Rate App',
                     Icons.star_outline,
-                    onTap: () => _rateApp(),
+                    onTap: () => _showRatingDialog(),
                   ),
                   _buildListTile(
                     'Share App',
@@ -289,9 +277,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Icons.info_outline,
                     trailing: Text(
                       appVersion,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Poppins',
                         color: Colors.black,
+                        fontSize: screenWidth * 0.04,
                       ),
                     ),
                   ),
@@ -311,7 +300,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       _showLogoutDialog();
                     },
                   ),
-                  SizedBox(height: screenHeight * 0.05)
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05)
                 ],
               ),
             ),
@@ -326,11 +315,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
       child: Text(
         title,
-        style: const TextStyle(
-          fontSize: 14,
+        style: TextStyle(
+          fontSize: screenWidth * 0.04,
           fontWeight: FontWeight.w600,
           fontFamily: 'Poppins',
-          color: Color(0xFF08244B),
+          color: const Color(0xFF08244B),
         ),
       ),
     );
@@ -342,7 +331,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       margin: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: const Color(0xFFd9d9d9), width: 2),
+        border: Border.all(color: const Color(0xFFd9d9d9), width: 1),
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListTile(
@@ -352,6 +341,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           style: TextStyle(
             fontFamily: 'Poppins',
             color: textColor ?? Colors.black,
+            fontSize: screenWidth * 0.04,
           ),
         ),
         trailing: trailing ??
@@ -369,20 +359,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
       margin: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: const Color(0xFFd9d9d9), width: 2),
+        border: Border.all(color: const Color(0xFFd9d9d9), width: 1),
         borderRadius: BorderRadius.circular(10),
       ),
       child: SwitchListTile(
         title: Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Poppins',
             color: Colors.black,
+            fontSize: screenWidth * 0.04,
           ),
         ),
         secondary: Icon(icon, color: const Color(0xFF08244B)),
         value: value,
         onChanged: onChanged,
+        activeColor: Colors.green, // Define active color
+        inactiveThumbColor: Colors.grey, // Define inactive color
       ),
     );
   }
@@ -413,11 +406,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text(
+        title: Text(
           'Select Language',
           style: TextStyle(
             fontFamily: 'Poppins',
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
+            fontSize: screenWidth * 0.05,
           ),
         ),
         content: Column(
@@ -432,9 +426,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               .map((language) => RadioListTile(
                     title: Text(
                       language,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Poppins',
                         color: Colors.black,
+                        fontSize: screenWidth * 0.04,
                       ),
                     ),
                     value: language,
@@ -445,6 +440,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       });
                       Navigator.pop(context);
                     },
+                    activeColor: const Color(
+                        0xFF08244B), // Define the color of the selected radio button
+                    // Define the background color of the tile
                   ))
               .toList(),
         ),
@@ -456,11 +454,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text(
+        title: Text(
           'Select Unit System',
           style: TextStyle(
             fontFamily: 'Poppins',
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
+            fontSize: screenWidth * 0.05,
           ),
         ),
         content: Column(
@@ -472,9 +471,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               .map((unit) => RadioListTile(
                     title: Text(
                       unit,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'Poppins',
                         color: Colors.black,
+                        fontSize: screenWidth * 0.04,
                       ),
                     ),
                     value: unit,
@@ -485,6 +485,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       });
                       Navigator.pop(context);
                     },
+                    activeColor: const Color(
+                        0xFF08244B), // Define the color of the selected radio button
+                    // Define the background color of the tile
                   ))
               .toList(),
         ),
@@ -496,37 +499,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text(
+        title: Text(
           'Clear Cache',
           style: TextStyle(
             fontFamily: 'Poppins',
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
+            fontSize: screenWidth * 0.04,
           ),
         ),
-        content: const Text(
+        content: Text(
           'Are you sure you want to clear the app cache? This will not delete any of your personal data.',
           style: TextStyle(
             fontFamily: 'Poppins',
             color: Colors.black,
+            fontSize: screenWidth * 0.04,
           ),
         ),
         actions: [
           TextButton(
-            child: const Text(
+            child: Text(
               'Cancel',
               style: TextStyle(
                 fontFamily: 'Poppins',
-                color: Color(0xFF08244B),
+                color: const Color(0xFF08244B),
+                fontSize: screenWidth * 0.04,
               ),
             ),
             onPressed: () => Navigator.pop(context),
           ),
           TextButton(
-            child: const Text(
+            child: Text(
               'Clear',
               style: TextStyle(
                 fontFamily: 'Poppins',
-                color: Color(0xFF08244B),
+                color: const Color(0xFF08244B),
+                fontSize: screenWidth * 0.04,
               ),
             ),
             onPressed: () {
@@ -546,37 +553,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text(
+        title: Text(
           'Log Out',
           style: TextStyle(
             fontFamily: 'Poppins',
-            color: Color(0xFF08244B),
+            color: const Color(0xFF08244B),
+            fontSize: screenWidth * 0.05,
           ),
         ),
-        content: const Text(
+        content: Text(
           'Are you sure you want to log out?',
           style: TextStyle(
             fontFamily: 'Poppins',
             color: Colors.black,
+            fontSize: screenWidth * 0.04,
           ),
         ),
         actions: [
           TextButton(
-            child: const Text(
+            child: Text(
               'Cancel',
               style: TextStyle(
                 fontFamily: 'Poppins',
-                color: Color(0xFF08244B),
+                color: const Color(0xFF08244B),
+                fontSize: screenWidth * 0.04,
               ),
             ),
             onPressed: () => Navigator.pop(context),
           ),
           TextButton(
-            child: const Text(
+            child: Text(
               'Log Out',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 color: Colors.red,
+                fontSize: screenWidth * 0.04,
               ),
             ),
             onPressed: () {

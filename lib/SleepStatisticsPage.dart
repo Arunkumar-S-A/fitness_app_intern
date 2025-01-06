@@ -116,7 +116,7 @@ class _SleepStatisticsPageState extends State<SleepStatisticsPage> {
                       padding: EdgeInsets.all(screenWidth * 0.04),
                       child: Column(
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: const SleepChart(),
                           ),

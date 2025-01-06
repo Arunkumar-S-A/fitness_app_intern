@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'CameraScreen.dart';
 import 'package:camera/camera.dart';

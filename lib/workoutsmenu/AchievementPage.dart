@@ -34,14 +34,14 @@ class AchievementPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: width * 0.06,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF08244B),
+                        color: const Color(0xFF08244B),
                         fontFamily: 'Oswald',
                       ),
                     ),
                     Text(
                       'Great job crushing your Full Body Workout',
                       style: TextStyle(
-                        color: Color(0XFF111111),
+                        color: const Color(0XFF111111),
                         fontSize: width * 0.04,
                       ),
                     ),
@@ -77,7 +77,7 @@ class AchievementPage extends StatelessWidget {
                             label: Text(
                               'Share Workout',
                               style: TextStyle(
-                                color: Color(0xFF111111),
+                                color: const Color(0xFF111111),
                                 fontFamily: 'Poppins',
                                 fontSize: width * 0.04,
                               ),
@@ -106,7 +106,7 @@ class AchievementPage extends StatelessWidget {
                             label: Text(
                               'Save to History',
                               style: TextStyle(
-                                color: Color(0xFF111111),
+                                color: const Color(0xFF111111),
                                 fontFamily: 'Poppins',
                                 fontSize: width * 0.04,
                               ),

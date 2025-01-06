@@ -180,7 +180,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BottomNavigation()),
+        MaterialPageRoute(builder: (context) => const BottomNavigation()),
       );
     }
   }
@@ -365,7 +365,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               InfoItemWidget.buildInfoItem(
                                 Icons.local_fire_department,
                                 'Calories Budget',
-                                '${userData.calorieBudget} kcal',
+                                '${userData.calorieBudget.toInt()} kcal',
                               ),
                               InfoItemWidget.buildInfoItem(
                                 Icons.fitness_center,
